@@ -1,0 +1,45 @@
+.AutoComplete{
+    width: 20%;
+    padding: 1rem;
+    height: 100%;
+    border: 1px solid gray;
+    border-radius: 1rem;
+}
+
+.searchcontainer {
+    border: 1px solid rgb(185, 185, 185);
+    padding: 5px;
+    border-radius: 10px;
+
+}
+.Results{
+    max-height: 10rem;
+    overflow-x: hidden;
+}
+
+.search {
+    line-height: 10px;
+    width: 100%;
+    outline: none;
+    border: none;
+}
+
+.RenderProduct{
+    margin-top: 2rem;
+    border-radius:1rem ;
+
+}
+
+.Results ul {
+    list-style: none;
+}
+
+.Results ul div {
+    font-size: 0.8rem;
+    cursor: pointer;
+    background-color: rgb(238, 238, 238);
+    padding: 0.2rem;
+}
+
+.Results hr{
+}

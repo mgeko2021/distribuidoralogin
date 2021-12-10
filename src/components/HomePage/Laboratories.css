@@ -1,0 +1,23 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+.Laboratories {
+	overflow: hidden;
+	padding: auto 2rem ;
+	margin: auto !important;
+	margin-bottom:1rem !important;
+}
+.Laboratories h4{
+	margin-top: 0rem;
+}
+/* 
+@media screen and (max-width: 770px) {
+    .Laboratories {
+		width: 100%;
+		margin-bottom:2rem;
+	}
+}
+	 */

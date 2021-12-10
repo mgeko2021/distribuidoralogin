@@ -1,0 +1,19 @@
+.Suggestions {
+    background-color: white;
+    color:black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    margin-bottom: 4rem;
+}
+
+.Suggestions h4{
+    margin-top: 2.2rem;
+    margin-bottom: 2rem;
+    color: rgb(83,182,248);
+    font-size: 1.4rem;
+    font-weight: 700;
+
+}

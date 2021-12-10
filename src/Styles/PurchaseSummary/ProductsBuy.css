@@ -1,0 +1,163 @@
+.ProductsBuy{
+    width: 100%;
+    padding-bottom: 10rem;
+    color: black;
+}
+
+
+.RouteBuy {
+    text-align: left;
+    color: rgb(88, 88, 88);
+}
+
+.RouteBuy h2{
+    width: 100%;
+    font-weight: 700;
+}
+
+.RouteBuy p{
+    width: 100%;
+    font-size: 1.2rem;
+}
+
+.DescriptionPay{
+    /* display: flex;
+    justify-content: space-between;
+    margin: auto; */
+    font-size: 1.3rem;
+}
+
+.DescriptionBuy {
+    width: 52%;
+}
+.ProductsInfoBuy {
+    width: 46%;
+    max-height: 100%;
+}
+.ProductsInfoBuy .EmptyCar {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content:center ;
+}
+
+
+
+.DescriptionBuy h3{
+    margin-bottom: 1rem;
+    color: rgb(47, 162, 182);
+    text-align: left;
+}
+
+.DescriptionInfoBuy{
+    width: 100%;
+    padding: 6% 4%;
+    padding-bottom: 12%;
+    background-color: rgb(238, 238, 238);
+    margin-bottom:1rem;
+
+}
+
+.DescriptionInfoBuy h5{
+    color: rgb(47, 162, 182);
+
+}
+.DescriptionInfoBuy p{
+    font-size: 1rem;
+}
+.SendAddress h5{
+    margin-bottom: 1rem;
+}
+
+.DescriptionInfoBuy .SendAddress{
+    text-align: left;
+    margin-bottom: 1.5rem;
+}
+
+.DescriptionInfoBuy .DeliveryAddress{
+    text-align: left;
+    margin-bottom: 1.5rem;
+    /* display: flex;
+    flex-direction: column;
+    width: 100%; */
+}
+
+.DeliveryAddress h5 {
+    margin-bottom: 1rem;
+}
+
+.DeliveryAddress .Name {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+/* .DeliveryAddress .MuiFormControl-root{
+    width: 49%;
+    margin-bottom: 0.5rem;
+} */
+
+/* .DeliveryAddress .Info .MuiFormControl-root{
+    width: 100%;
+    margin-bottom: 0.5rem;
+} */
+
+
+.DeliveryAddress .InfoPlace {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.DeliveryAddress .InfoSend {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.PayProducts {
+    display: flex;
+    flex-direction: column;
+}
+
+.PayProducts h5 {
+    text-align: left;
+    margin-bottom: 0.5rem;
+}
+
+.Pay {
+    display: flex;
+    justify-content: space-between;
+}
+.PayProducts .PSE {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.PriceTotal {
+    width: 100%;
+    padding: 3%;
+    background-color: rgb(238, 238, 238);
+    display: flex;
+    flex-direction: column;
+}
+
+
+.PriceTotal button{
+    background-color: rgb(128, 235, 128);
+}
+
+.Discount h4{
+    color: rgb(60, 196, 60);
+    text-align: right;
+}
+
+.PriceTotal button:hover{
+    background-color: rgb(137, 206, 137);
+}
+
+.InfoPriceTotal{
+    display: flex;
+    justify-content:space-evenly;
+}

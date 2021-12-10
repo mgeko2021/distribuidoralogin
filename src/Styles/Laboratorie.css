@@ -1,0 +1,67 @@
+.Laboratorie{
+    width: 100%;
+}
+
+.DisLaboratorie {
+    display: flex;
+    justify-content: space-evenly;
+    color: black;
+    width: 80%;
+    margin: auto;
+    margin-top: 3rem;
+}
+.Autocomplete {
+    width:15%;
+}
+.RenderList {
+   width: 75%;
+}
+
+.ListLaboratorie{
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.RenderPageNumbers{
+    margin: 2rem auto;
+}
+
+.pageNumbers{
+    display: flex;
+    list-style: none;
+    justify-content: center;
+}
+.pageNumbers li{
+    padding:0.5rem;
+    cursor: pointer;
+    margin: 0.1rem;
+    font-size: 1.3rem;
+
+}
+
+.pageNumbers li.active{
+    background-color: rgb(252, 97, 97);
+    color: black;
+    border-radius: 0.4rem;
+}
+
+.pageNumbers li button {
+    background-color:transparent;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    color: black;
+}
+
+.pageNumbers li:hover{
+    background-color: rgb(209, 209, 209);
+    border-radius: 0.4rem;
+    color: black;
+}
+
+.pageNumbers li button:focus {
+    outline: none;
+}
+

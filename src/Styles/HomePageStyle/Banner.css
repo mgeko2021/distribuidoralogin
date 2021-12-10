@@ -1,0 +1,71 @@
+
+.Banner {
+    background-color: rgba(219, 219, 219, 0.26);
+    color:black;
+    margin:auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.RedenderPageNumbers {
+    height: 20%;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+
+.RedenderPageNumbers button {
+   width: 2rem;
+   margin: auto 0.2rem;
+   height: 0.2rem;
+}
+
+.RedenderPageNumbers button:hover {
+   background-color: darkslategray;
+ }
+
+/* es la pginacion */
+
+
+ .pageNumbersBanner{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    width: 100%;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
+.pageNumbersBanner button.active{
+    background-color: rgb(139, 139, 139);
+    color: black;
+    
+}
+
+.pageNumbersBanner button {
+    width: 10%;
+    background-color:transparent;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: black;
+    margin: 0 0.1rem;
+    border-radius: 0.4rem;
+    border: 1px solid rgb(189, 188, 188);;
+    height: 0.4rem;
+
+} 
+
+.pageNumbersBanner button:hover{
+    background-color: rgb(221, 221, 221);
+    color: black;
+}
+
+.pageNumbersBanner button:focus {
+    outline: none;
+} 
+
+

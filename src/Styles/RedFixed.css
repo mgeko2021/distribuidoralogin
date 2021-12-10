@@ -1,0 +1,14 @@
+.contenedor  img{
+    position: fixed;
+    width: 7rem;
+    z-index: 98;
+    cursor: pointer;
+    height: auto;
+    display: flex;
+}
+
+.contenedor  img:hover{
+    transform:translatey(15%);/* para tranladar el menu */
+    width: 8rem;
+    transition: all 1S;
+}

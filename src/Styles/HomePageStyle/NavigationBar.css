@@ -1,0 +1,173 @@
+.NavigationBar{
+    background-color: rgb(255, 255, 255);
+    height: 4.5rem;
+    margin-bottom: 2rem;
+    margin-top: 10rem;
+}
+
+.Nav {
+    display: flex;
+    align-items: center;
+    justify-content:space-between;
+    height: 100%;
+}
+
+.LogoNav {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.LogoNav img{
+    height: 90%;
+    
+}
+
+.NavLinks {
+    display: flex;
+    justify-content: space-evenly;
+    color: black;
+}
+
+.NavLinks a{
+    text-decoration: none;
+    font-weight: 100;
+    color: rgb(0, 0, 0);
+    font-size: 1.5rem;
+}
+
+.NavLinks a:hover{
+    color: gray;
+    transition: 0.3s;
+}
+.mobileLinks {
+    display: flex;
+    justify-content: space-evenly;
+    color: black;
+}
+
+.mobileLinks a{
+    text-decoration: none;
+    font-weight: 100;
+    color: rgb(0, 0, 0);
+    font-size: 1.5rem;
+}
+
+.mobileLinks a:hover{
+    color: gray;
+    transition: 0.3s;
+}
+
+.BuyCar{
+    background-color: rgba(57, 98, 185, 0.973);
+    height: 100%;
+    display: flex;
+    position: relative;
+}
+.BuyCar svg{
+    width: 70%;
+    height: 70%;
+    margin: auto;
+    align-items: center;
+    color: white;
+}
+
+.SelectedProducts{
+    position: absolute;
+    width: 2rem;
+    height: 2rem;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    top: 10%;
+    left: 55%;
+    border:0.2rem solid rgb(185, 176, 176);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.SelectedProducts h3{
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+
+.Responsive{
+    background-color: rgba(57, 98, 185, 0.973);
+    height: 100%;
+    width: 2rem ;
+    display: none !important;
+}
+
+
+
+@media screen and (min-width: 770px) {
+    .mobileLinks{
+        display: none;
+    }
+}
+
+@media screen and (max-width: 770px) {
+
+    .Nav {
+        display: flex;
+        align-items: center;
+    }
+    .NavLinks {
+        display: none;
+    }
+
+    .mobileLinks {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        background-color: rgb(104, 220, 255);
+        color: white;
+        position: absolute;
+        top:4.5rem;
+        z-index: 50;
+        line-height: 5rem;
+    }
+
+    .mobileLinks a{
+        border-bottom: 1px solid rgb(97, 97, 97);
+    }
+
+    .mobileLinks a{
+        color: white;
+        font-weight: 500;
+    }
+
+    .BuyCar{
+        display: none;
+    }
+
+    .Responsive{
+        height: 100%;
+        width: 5rem ;
+        display: block !important;
+        margin-right: 1.5rem;
+        color: rgb(77, 208, 248);
+        background-color: transparent;
+    }
+
+    .Nav svg{
+        width: 4.5rem;
+        height: 60%;
+    }
+
+    .LogoNav{
+        display: flex;
+        align-items: center;
+    }
+
+    .LogoNav img{
+        height: 80%;
+        margin-left: 4rem
+    }
+};
+
+
+

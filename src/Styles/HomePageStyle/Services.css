@@ -1,0 +1,68 @@
+.Services {
+    background-color: rgba(153, 235, 255, 0.445);
+    color:black;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    margin-bottom: 3rem;
+    padding: 2rem 0;
+}
+
+.ServicesImg {
+    margin: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.ServicesImg1{
+    background-color: white;
+    border-bottom: 0.3rem solid rgb(0, 198, 248);
+    padding: 1rem;
+    cursor: pointer;
+    border-radius: 0.3rem;
+
+}
+
+.ServicesImg2{
+    background-color: white;
+    border-bottom: 0.3rem solid rgb(0, 198, 248);
+    padding: 1.8rem;
+    cursor: pointer;
+    border-radius: 0.3rem;
+}
+
+.ServicesImg3{
+    background-color: white;
+    border-bottom: 0.3rem solid rgb(0, 198, 248);
+    padding: 1rem;
+    cursor: pointer;
+    border-radius: 0.3rem;
+    margin:auto 1rem auto 1rem;
+}
+
+.ServicesImg4{
+    background-color: white;
+    border-bottom: 0.3rem solid rgb(0, 198, 248);
+    padding: 1rem;
+    cursor: pointer;
+    border-radius: 0.3rem;
+    margin:auto 1rem auto 1rem;
+
+}
+
+.ServicesImg1:hover{
+    border-bottom: none;
+    transition: 2s;
+}
+.ServicesImg2:hover{
+    border-bottom: none;
+    transition: 2s;
+}
+.ServicesImg3:hover{
+    border-bottom: none;
+    transition: 2s;
+}
+.ServicesImg4:hover{
+    border-bottom: none;
+    transition: 2s;
+}

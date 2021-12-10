@@ -1,0 +1,110 @@
+.DescriptionProduct{
+    background-color: white;
+    color: rgba(0, 0, 0, 0.527);
+}
+
+.Description {
+    text-align: left;
+    color: rgb(88, 88, 88);
+}
+
+.Description h2{
+    width: 100%;
+    font-weight: 700;
+}
+
+.Description p{
+    width: 100%;
+    font-size: 1.2rem;
+}
+
+.InfoBuyProduct{
+    /* display: flex; */
+    color:black;
+    margin: 5rem auto 20vh auto;
+    
+}
+
+.ImgBuyProduct {
+    width: 80%;
+    background-color: rgb(211, 211, 211);
+    display: flex;
+}
+
+.ImgBuyProduct img{
+    object-fit: scale-down;
+}
+
+.PicreAndDescription{
+    width: 100%;
+    background-color: rgb(252, 250, 244);
+    padding-top:5vh;
+    padding-bottom:7vh;
+}
+
+.PicreAndDescription .Prices {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.PicreAndDescription .NoTachado h3{
+    color: teal;
+    margin-bottom: 0;
+}
+.PicreAndDescription .NoTachado p{
+    color: teal;
+    margin-left:0;
+}
+
+.PicreAndDescription .Tachado {
+  color: rgba(252, 109, 109, 0.658);
+  text-decoration:line-through;
+  margin-left:0.5rem;
+
+}
+
+.PicreAndDescription p{
+    font-size:0.9rem;
+    text-align: left;
+    margin: 0 2rem 0.2rem 2rem ;
+}
+
+.Amount {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    color: rgb(68, 68, 68);
+}
+
+.AddToCar {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 0.5rem;
+}
+.AddToCar .Buy{
+    background-color: rgb(25, 76, 172);
+    color: white;
+    border:none;
+    padding: 0.4rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    width: 50%;
+}
+.AddToCar .Like{
+    color: white;
+    padding: 0.4rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
+.RedInfo {
+    margin-top: 1rem;
+}
+.RedInfo p {
+   margin: 0 auto 0.2rem 2rem ;
+   text-align: left;
+   
+
+}
+
