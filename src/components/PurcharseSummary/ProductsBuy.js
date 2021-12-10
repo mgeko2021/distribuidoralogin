@@ -10,6 +10,7 @@ import Button from '@material-ui/core/Button';
 import { useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import postEmail from '../../services/postEmail';
+import sendCorreo from '../../services/sendCorreo';
 import { FormControl,RadioGroup, Radio, FormControlLabel} from '@material-ui/core';
 import postPedido from '../../services/postPedido';
 
@@ -63,30 +64,32 @@ const ProductsBuy = () => {
         }
         let ObjectDataEmail = {
             "valor_total": sum,
-            "email":dataBuy.email ,
+            "to":dataBuy.email ,
             "contacto": dataBuy.contacto,
             "direccion":dataBuy.direccion,
-            "lista_precio":"01",
-            "lista_dcto":"10",
+            // "lista_precio":"01",
+            // "lista_dcto":"10",
             "forma_pago_id":dataBuy.forma_pago_id,
-            "ciudad_corres_id":"77076001",
+            // "ciudad_corres_id":"77076001",
             "ciudad_corres_desc":dataBuy.ciudad,
             "items": itemsBuy
         }
             // reset()
-        console.log(ObjectDataBuy)
+        // console.log(ObjectDataBuy)
 
         if(itemsBuy.length > 0 ) {
-            console.log("su hizo peticion")
-            reset()
-            // const postFunc = async () => {
-            //     const responsePedido = await postPedido(ObjectDataBuy)
-            //     const responseEmail = await postEmail(ObjectDataEmail)
-            //     if(responsePedido.status == 200 && responseEmail.status == 200) {
-            //         reset()    
-            //     }
-            // }
-            // postFunc() 
+            const postFunc = async () => {
+                // const responsePedido = await postPedido(ObjectDataBuy)
+                const responseEmail = await sendCorreo(ObjectDataEmail)
+                console.log(responseEmail)
+                if(responseEmail.status == 200 
+                    // &&  responseEmailo.status == 200
+                     ) {
+                        console.log("su hizo peticion")
+                    reset()    
+                }
+            }
+            postFunc() 
         } else {
             console.log("no peticion")
         }

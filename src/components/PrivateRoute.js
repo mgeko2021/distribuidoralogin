@@ -12,7 +12,7 @@ const PrivateRoute = ({component: Component, ...rest}) => {
          {auth.tokenAuth ? (
          <Component/>
          ):(
-          <Redirect to ={{pathname:`${location.pathname}`, state: { from:location }}}/> 
+          <Redirect to ={{pathname:`/`, state: { from:location }}}/> 
         //   <Redirect to ={{pathname:`/`, state: { from:location }}}/> 
           )}
         </Route>
