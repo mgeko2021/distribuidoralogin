@@ -13,6 +13,7 @@ import {Provider} from 'react-redux'
 import generateStore from './redux/store';
 import AuthProvider from './Auth/AuthProvider';
 import Laboratorie from './components/Laboratorie';
+import Verificar from './components/Verificar';
 import PurchaseSummary from './components/PurcharseSummary';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
@@ -34,6 +35,7 @@ function App() {
             <AuthProvider>  
               <PublicRoute exact path="/" component={HomePage}/>
               <PublicRoute exact path="/laboratorio/:id" component={Laboratorie}/>
+              <PublicRoute exact path="/verificacion/:token" component={Verificar}/>
               <PrivateRoute exact path="/compraproducto/:id" component={BuyProduct}/>
               <PrivateRoute exact path="/productos" component={Products}/>
               <PrivateRoute exact path="/compras" component={PurchaseSummary}/>

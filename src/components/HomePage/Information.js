@@ -13,6 +13,7 @@ import useAuth from '../../Auth/useAuth';
 import { useForm } from 'react-hook-form';
 import postToken from '../../services/postToken';
 import postEmail from '../../services/postEmail';
+import mailLogin from '../../services/mailLogin';
 
 
 
@@ -34,26 +35,38 @@ const Information = () => {
   useEffect(()=> {
     if(dataForm){
         const postFunc = async () => {
-        const token = await postToken()
-        console.log(token)
-            if(token.status == "200"){
-                const postEmailFunc = async () => {
-                const dataUser = await postEmail(token.data.token)
-                if(dataUser.status == "200"){
-                    for (let i = 0; i < dataUser.data.length; i++) {
-                        console.log(dataUser.data[i].EMAIL) 
-                        if (dataUser.data[i].EMAIL == dataForm.username) {
-                            setButtonPopUp(false)
-                            auth.upToken(token.data.token || localStorage.getItem("token"))
-                        }
-                    }
-                }
+        // const token = await postToken()
+        //     if(token.status == "200"){
+        //         const postEmailFunc = async () => {
+        //         const dataUser = await postEmail(token.data.token)
+        //         if(dataUser.status == "200"){
+        //             for (let i = 0; i < dataUser.data.length; i++) {
+        //                 console.log(dataUser.data[i].EMAIL) 
+        //                 if (dataUser.data[i].EMAIL == dataForm.username) {
+                            const data = {
+                                // to: dataForm.username,
+                                to: "mcamacho@gekoestudio.com",
+                                // token: token.data.token
+                                token:"Bearer 1//049GqkZCJDZgECgYIARAAGAQSNwF-L9IrXuXALibPF_aZKt0FA9wtz74LgcDFvQ-_N_rNMwNyq48Byw6yw6QGf4IvhaOAr7gQcYs"
+                            }
+                            const postLoginFunc  =  async () =>{
+                                const tokenLogin = await mailLogin(data) 
+
+                                console.log(tokenLogin)
+                            }
+                            postLoginFunc() 
+                                      
+                            // setButtonPopUp(false)
+                            // auth.upToken(token.data.token || localStorage.getItem("token"))
+                //         }
+                //     }
+                // }
             
                 // setButtonPopUp(false)
                 // auth.upToken(token.data.token || localStorage.getItem("token"))
-            } 
-            postEmailFunc()
-        }
+            // } 
+            // postEmailFunc()
+        // }
     }
         postFunc() 
     }
