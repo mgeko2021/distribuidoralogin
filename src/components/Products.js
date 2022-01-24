@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import  '../Styles/Products.css';
+import Footer from './Footer';
 import Information from './HomePage/Information';
 import NavigationBar from './HomePage/NavigationBar';
 import Telefares from './HomePage/Telefares';
@@ -40,6 +41,7 @@ function Products() {
             <ProductslList infoBanner={infoBanner}/>
             {renderPageNumbers}
             <Telefares/>
+            <Footer/>
         </div>
     );
 }

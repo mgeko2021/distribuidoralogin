@@ -12,7 +12,7 @@ import img4 from './imgexcl/img4.jpg';
 
 const ExclusiveBrands = () => {
     return (
-        <div className="ExclusiveBrands row col-12 col-md-12 mx-auto p-0"> 
+        <div className="ExclusiveBrands row col-12 col-md-12 mx-auto mb-0 p-0"> 
         <h4>MARCAS EXCLUSIVAS</h4>
             <div className="ExclusiveBrandsImg row col-10 col-sm-10 col-md-12 col-lg-10 col-xl-8 mx-auto p-0">
                 <article className="uno col-12 col-sm-6 col-md-3 p-0">
@@ -30,7 +30,7 @@ const ExclusiveBrands = () => {
                     <MemoryIcon style={{color: '#0096d2', fontSize: 80}}/>
                     <div ></div>
                 </article>
-                <article className="cuatro col-12 col-sm-6 col-md-3 p-0">
+                <article className="cuatro col-12 col-sm-6 col-md-3 p-0 ">
                     <a ><img src={img4} alt="5" /></a>
                     <TripOriginIcon style={{color: '#0096d2', fontSize: 80}}/>
                     <div ></div>

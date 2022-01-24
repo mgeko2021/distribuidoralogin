@@ -7,6 +7,7 @@ import { useState } from "react";
 import Autocomplete from "./Laboratorie/AutoComplete";
 // import Autocomplete from "./Laboratorie/AutoComplete";
 import img from "./bg-main.jpg"
+import Footer from "./Footer";
 
 const Laboratorie = () => {
     const[currentPage, setCurrentPage] = useState(1) 
@@ -100,6 +101,7 @@ const Laboratorie = () => {
               </div>
             </div>
           </div>
+          <Footer/>
         </div>
     );
 }

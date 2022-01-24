@@ -1,0 +1,139 @@
+.NosotrosRoute{
+    text-align: left;
+}
+.NosotrosRoute h2{
+    color: black;
+    margin: 0;
+    font-weight: 700;
+}
+.NosotrosRoute p{
+    color: gray;
+    font-size: 1.1rem;
+}
+
+
+.NosotrosMisionVision{
+    color: black;
+    margin: 3rem auto;
+}
+
+.NosotrosVision{
+    border-bottom: 0.1rem solid rgb(233, 233, 233);
+    padding-bottom: 2rem;
+    margin-bottom: 4rem;
+}
+.NosotrosVision img{
+     width: 150px;
+}
+
+.NosotrosVision p{
+    font-size: 0.7rem;
+    text-align: left;
+}
+
+.NosotrosVision h3{
+    font-size: 1.5rem;
+    text-align: left;
+}
+
+.NosotrosMision img{
+ width: 150px;
+}
+
+.NosotrosMision p{
+    font-size: 0.7rem;
+    text-align: left;
+}
+
+.NosotrosMision h3{
+    font-size: 1.5rem;
+    text-align: left;
+}
+
+.Historia{
+    color: white;
+    background: linear-gradient(0deg, rgb(82, 82, 82) 0%, rgba(0,0,0,1) 100%);
+    text-align: left;
+    padding: 5rem 0;
+}
+
+.Historia h3{
+    font-size: 1.7rem;
+}
+
+.Historia p{
+    font-size: 0.9rem;
+    line-height: 1.1rem;
+}
+
+
+
+.Information {
+    margin-top: 0;
+    color: #fff;
+    align-items: center;
+    font-size: 0.8rem;
+    color: black;
+    padding: 0.3rem 0;
+}
+
+.NetworkInformation {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+   
+}
+
+.NetworkInformation span{
+    margin-left: 0.5rem;
+    padding-left: 0.5rem;
+    border-left: 0.15rem solid rgb(54, 54, 54);
+}
+
+.Loginbtn{
+    display: flex;
+    justify-content: flex-end;
+    
+}
+
+.Loginbtn button {
+    background-color: cornflowerblue;
+    color: white;
+    border:none;
+    padding: 0.4rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
+.References {
+    display: flex;
+    align-items: center;
+    
+}
+.References a{
+    margin-left: 0.5rem;
+}
+    
+
+.Track{
+    display: flex;
+    align-items: center;
+}
+.PBX{
+    display: flex;
+    align-items: center;
+}
+
+.PBX p{
+    margin: 0;
+    border:0;
+}
+.Track a{
+   margin-right: 0.5rem;
+}
+
+@media screen and (max-width: 770px) {
+    .Information{
+        display: none !important;
+    }
+}
+

@@ -19,8 +19,7 @@ import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 import PublicRoute from './components/PublicRoute';
 import PrivateRoute from './components/PrivateRoute';
-
-
+import Nosotros from './components/Nosotros';
 
 
 function App() {
@@ -36,6 +35,7 @@ function App() {
               <PublicRoute exact path="/" component={HomePage}/>
               <PublicRoute exact path="/laboratorio/:id" component={Laboratorie}/>
               <PublicRoute exact path="/verificacion/:token" component={Verificar}/>
+              <PublicRoute exact path="/nosotros" component={Nosotros}/>
               <PrivateRoute exact path="/compraproducto/:id" component={BuyProduct}/>
               <PrivateRoute exact path="/productos" component={Products}/>
               <PrivateRoute exact path="/compras" component={PurchaseSummary}/>

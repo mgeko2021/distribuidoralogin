@@ -4,6 +4,7 @@ import NavigationBar from './HomePage/NavigationBar';
 import ProductsBuy from './PurcharseSummary/ProductsBuy';
 import "../Styles/PurchaseSummary.css"
 import img from "./bg-main.jpg"
+import Footer from './Footer';
 
 const PurchaseSummary = () => {
     return (
@@ -17,6 +18,7 @@ const PurchaseSummary = () => {
                 </div>
             </div>
             <ProductsBuy/>
+            <Footer/>
         </div>
     );
 };

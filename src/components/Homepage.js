@@ -10,6 +10,7 @@ import Telefares from './HomePage/Telefares';
 import  '../Styles/HomePage.css';
 import RedFixed from './RedFixed';
 import img from "./bg-main.jpg"
+import Footer from './Footer';
 
 const HomePage = () => {
     // className="BannerImg" style={{backgroundImage:`url(${img})`}}
@@ -27,6 +28,7 @@ const HomePage = () => {
             <Services/>
             <Laboratories/>
             <ExclusiveBrands/>
+            <Footer/>
         </div>
     );
 };

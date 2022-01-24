@@ -1,0 +1,153 @@
+.FooterUp{
+    background-color: rgb(54, 168, 255);
+    color: white;
+    padding: 1rem 0;
+}
+
+.Information {
+    margin-top: 0;
+    color: #fff;
+    align-items: center;
+    font-size: 0.8rem;
+    color: black;
+    padding: 0.3rem 0;
+}
+
+.FooterIcons {
+    display: flex;
+    align-items: center;
+}
+
+.FooterIcons span{
+    margin-left: 0.5rem;
+    padding-left: 0.5rem;
+    /* border-left: 0.15rem solid rgb(255, 255, 255); */
+}
+
+.Loginbtn{
+    display: flex;
+    justify-content: flex-end;
+    
+}
+
+
+.Track{
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    text-align: left;
+    line-height: 1.1rem;
+}
+.Track p{
+    margin: 0;
+    border:0;
+}
+.PBX{
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+}
+.WorkOur{
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+}
+
+.PBX p{
+    margin: 0;
+    border:0;
+}
+
+.WorkOur{
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    text-align: left;
+    line-height: 1.1rem;
+}
+
+.WorkOur p{
+    margin: 0;
+    border:0;
+}
+.Track a{
+   margin-right: 0.5rem;
+}
+
+.FooterIcons svg{
+    width: 3rem;
+    height: 3rem;
+    margin-right: 0.5rem;
+}
+
+.FooterDown{
+    background-color: rgb(0, 65, 176);
+    color: white;
+    padding: 1.5rem 0;
+    
+}
+
+
+.ReferencesFooter{
+    font-size: 1rem;
+}
+.ReferencesFooter a{
+    margin-left: 0.5rem;
+}
+
+.FooterDownContainer{
+    padding:0 0 1rem ;
+
+    border-bottom: 0.1rem solid rgb(77, 126, 129);
+}
+
+
+/* @media screen and (max-width: 770px) {
+    .Information{
+        display: none !important;
+    }
+} */
+
+.FooterRigths{
+    font-size: 0.7rem;
+    margin-top: 1rem;
+}
+
+.FooterRigths a{
+    color: white;
+    margin-left:0.5rem;
+    text-decoration: none;
+}
+
+.DividingLine{
+    font-weight: 700;
+    margin-right: 1.5rem;
+}
+
+
+
+.WorkOur svg{
+    margin-left: 1.5rem;
+}
+
+.Track svg{
+    margin-left: 1.5rem;
+}
+
+.NavLinksFooter {
+    display: flex;
+    justify-content: space-evenly;
+    
+}
+
+.NavLinksFooter a{
+    text-decoration: none;
+    font-weight: 100;
+    font-size: 1.3rem;
+    color: white;
+}
+
+.NavLinksFooter a:hover{
+    color: gray;
+    transition: 0.3s;
+}
