@@ -5,6 +5,7 @@ import Information from '../Information';
 import NavigationBar from '../NavigationBar';
 import DescriptionProduct from './BuyProduct/DescriptionProduct';
 import img from "./bg-main.jpg"
+import Footer from "../../Footer";
 
 function BuyProduct() {
 
@@ -20,6 +21,7 @@ function BuyProduct() {
                 </div>
             </div>
             <DescriptionProduct/>
+            <Footer/>
         </div>
     );
 }
