@@ -8,13 +8,11 @@ import Paper from "@material-ui/core/Paper";
 import InputBase from "@material-ui/core/InputBase";
 import SearchIcon from "@material-ui/icons/Search";
 import IconButton from "@material-ui/core/IconButton";
-import Divider from "@material-ui/core/Divider";
-import TextField from "@material-ui/core/TextField";
-import AppsIcon from '@material-ui/icons/Apps';
-import ViewComfyIcon from '@material-ui/icons/ViewComfy';
-import ViewModuleIcon from '@material-ui/icons/ViewModule';
-import ViewHeadlineIcon from '@material-ui/icons/ViewHeadline';
-import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
+import AppsIcon from "@material-ui/icons/Apps";
+import ViewComfyIcon from "@material-ui/icons/ViewComfy";
+import ViewModuleIcon from "@material-ui/icons/ViewModule";
+import ViewHeadlineIcon from "@material-ui/icons/ViewHeadline";
+import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 // import Checkbox from '@material-ui/core/Checkbox';
 import CreditCardIcon from "@material-ui/icons/CreditCard";
 import HouseIcon from "@material-ui/icons/House";
@@ -47,7 +45,7 @@ function ProductslList({ infoBanner }) {
   const [value, setValue] = useState([0, 900]);
   const [maxValue, setMaxValue] = useState(1200);
   const [minValue, setMinValue] = useState(0);
-  const [grid, setGrid] = useState(100/4);
+  const [grid, setGrid] = useState(100 / 4);
   const [categoriesRender, setCategoriesRender] = useState([]);
   const [laboratory, setLaboratory] = useState([]);
 
@@ -60,43 +58,37 @@ function ProductslList({ infoBanner }) {
 
   const renderProducts = useSelector((store) => store.dataProducts.array);
 
-  
-
-
   useEffect(() => {
-    const categories = []
-    const laboratory = []
-    if(renderProducts.length > 0){
+    const categories = [];
+    const laboratory = [];
+    if (renderProducts.length > 0) {
       for (let i = 0; i < renderProducts.length; i++) {
-        if(renderProducts[i].CMLINEAS_DESCRIPCION){
-          categories.push(renderProducts[i].CMLINEAS_DESCRIPCION.toUpperCase())
-          laboratory.push(renderProducts[i].CMCRICLA_DESCRIPCION.toUpperCase())
-
+        if (renderProducts[i].CMLINEAS_DESCRIPCION) {
+          categories.push(renderProducts[i].CMLINEAS_DESCRIPCION.toUpperCase());
+          laboratory.push(renderProducts[i].CMCRICLA_DESCRIPCION.toUpperCase());
         }
       }
     }
     const unique = categories.filter((valor, indice) => {
       return categories.indexOf(valor) === indice;
-    }
-    );
-    
+    });
+
     const uniqueLaboratory = laboratory.filter((valor, indice) => {
-      return categories.indexOf(valor) === indice;
+      return laboratory.indexOf(valor) === indice;
+    });
+    if (unique.length > 0) {
+      setCategoriesRender(unique);
     }
-    );
-    if(unique.length > 0){
-      setCategoriesRender(unique)
+    if (uniqueLaboratory.length > 0) {
+      setLaboratory(uniqueLaboratory);
     }
-    if(uniqueLaboratory.length > 0){
-      setLaboratory(uniqueLaboratory)
-    }
-  },[])
+  }, []);
 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = renderProducts.slice(indexOfFirstPost, indexOfLastPost);
-  console.log(currentPosts)
-  const listLaboratoryRender = categoriesRender.map((laboratory, index) => (
+  console.log(laboratory);
+  const listLaboratoryRender = laboratory.map((laboratory, index) => (
     <LaboratoryRender key={index} laboratory={laboratory} />
   ));
   const listCategoriesRender = categoriesRender.map((categoria, index) => (
@@ -113,8 +105,6 @@ function ProductslList({ infoBanner }) {
   const handleChangeSelct = () => {
     // setValue(newValue);
   };
-
-
 
   return (
     <div className="ProductsList row col-sm-12  col-xl-9 mx-auto mt-5 mb-5 p-0">
@@ -138,9 +128,7 @@ function ProductslList({ infoBanner }) {
           <div className="FilterProductBox ">
             <div className="CategoriesProducts">
               <h3>Categorias</h3>
-              <div className="Categories">
-                {listCategoriesRender}
-              </div>
+              <div className="Categories">{listCategoriesRender}</div>
             </div>
             <div className="PriceRange">
               <h3>Rango de precios</h3>
@@ -165,10 +153,7 @@ function ProductslList({ infoBanner }) {
             </div>
             <div>
               <h3>Filtrar por tipo de laboratorios</h3>
-              <FormControl
-                variant="filled"
-                style={{ width: "100%" }} 
-              >
+              <FormControl variant="filled" style={{ width: "100%" }}>
                 <InputLabel htmlFor="filled-age-native-simple">
                   Laboratorio
                 </InputLabel>
@@ -191,23 +176,44 @@ function ProductslList({ infoBanner }) {
         <div className="ProductsRenderList col-12 col-sm-9 col-md-5 col-lg-8 p-0 mx-auto mt-0 ">
           <div className="ProductsGrid">
             <div className="IconsProductsGrid">
-              <ViewModuleIcon style={{ color: "#36a8ff" }} onClick={()=>{setPostsPerPage(6)
-              setGrid((100/3))}}/>
-              <AppsIcon style={{ color: "#36a8ff" }} onClick={()=>{setPostsPerPage(9)
-              setGrid((100/3))}}/>
-              <ViewComfyIcon style={{ color: "#36a8ff" }} onClick={()=>{setPostsPerPage(12)
-              setGrid((100/4))}}/>
+              <ViewModuleIcon
+                style={{ color: "#36a8ff" }}
+                onClick={() => {
+                  setPostsPerPage(6);
+                  setGrid(100 / 3);
+                }}
+              />
+              <AppsIcon
+                style={{ color: "#36a8ff" }}
+                onClick={() => {
+                  setPostsPerPage(9);
+                  setGrid(100 / 3);
+                }}
+              />
+              <ViewComfyIcon
+                style={{ color: "#36a8ff" }}
+                onClick={() => {
+                  setPostsPerPage(12);
+                  setGrid(100 / 4);
+                }}
+              />
             </div>
             <div className="CountProductsGrid">
-              <p className="m-0"> Encontrado {renderProducts.length ?renderProducts.length: 0 } productos</p>
+              <p className="m-0">
+                {" "}
+                Encontrado {renderProducts.length
+                  ? renderProducts.length
+                  : 0}{" "}
+                productos
+              </p>
             </div>
             <div className="OrderRenderProduct">
-              <p className="m-0"><ViewHeadlineIcon/> Ordenar por <KeyboardArrowDownIcon/> </p> 
+              <p className="m-0">
+                <ViewHeadlineIcon /> Ordenar por <KeyboardArrowDownIcon />{" "}
+              </p>
+            </div>
           </div>
-          </div>
-          <div className="ListRenderProduct">
-            {listRenderLaboratorie}
-          </div>
+          <div className="ListRenderProduct">{listRenderLaboratorie}</div>
           {/* <div className="RenderPageNumbers">
                 <ul className="pageNumbers" style={{color:"black"}}>
                   <li>
