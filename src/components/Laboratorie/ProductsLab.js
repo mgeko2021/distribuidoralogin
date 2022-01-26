@@ -14,7 +14,7 @@ const ProductsLab = ({laboratorie}) => {
     console.log(laboratorie)
 
     return ( 
-        <div className="ProductsLab">
+        <div className="ProductsLab mx-auto">
             {/* {laboratorie.ID_CODBAR? <img src={`img/${laboratorie.ID_CODBAR}.jpg`} alt="img"></img>:<img src={`404.png`} alt="404"></img>} */}
             {auth.tokenAuth?
             <Link 

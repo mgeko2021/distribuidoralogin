@@ -1,27 +1,9 @@
-.Laboratorie{
-    width: 100%;
-}
-
-.DisLaboratorie {
-    display: flex;
-    justify-content: space-evenly;
-    color: black;
-    width: 80%;
-    margin: auto;
-    margin-top: 3rem;
-}
-.Autocomplete {
-    width:15%;
-}
-.RenderList {
-   width: 75%;
-}
 
 .ListLaboratorie{
-    margin: auto;
+    /* margin: auto; */
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    /* justify-content: center; */
 }
 
 .RenderPageNumbers{
@@ -42,9 +24,10 @@
 }
 
 .pageNumbers li.active{
-    background-color: rgb(252, 97, 97);
+    background-color: rgb(54, 168, 255);
     color: black;
     border-radius: 0.4rem;
+    color: white;
 }
 
 .pageNumbers li button {

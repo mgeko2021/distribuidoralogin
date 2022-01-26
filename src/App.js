@@ -37,7 +37,7 @@ function App() {
               <PublicRoute exact path="/verificacion/:token" component={Verificar}/>
               <PublicRoute exact path="/nosotros" component={Nosotros}/>
               <PrivateRoute exact path="/compraproducto/:id" component={BuyProduct}/>
-              <PrivateRoute exact path="/productos" component={Products}/>
+              <PublicRoute exact path="/productos" component={Products}/>
               <PrivateRoute exact path="/compras" component={PurchaseSummary}/>
             </AuthProvider>
           </Switch>

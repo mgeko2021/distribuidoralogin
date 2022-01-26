@@ -55,11 +55,11 @@ const Autocomplete = ({ laboratorie }) => {
     );
   };
   return (
-    <div className="AutoComplete">
+    <div className="AutoComplete col-10 col-sm-3 col-xl-2 mx-auto">
       <div className="searchcontainer">
         <input
           type="text"
-          placeholder="Search.."
+          placeholder="Buscar.."
           className="search"
           value={searchtext}
           onChange={handleChange}/>
@@ -95,7 +95,6 @@ const Autocomplete = ({ laboratorie }) => {
           }
         </Link>
       }
-        
       </div>
     </div>
   );

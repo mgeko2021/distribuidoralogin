@@ -3,7 +3,7 @@ import Information from "./HomePage/Information"
 import NavigationBar from "./HomePage/NavigationBar";
 import ProductsLab from "./Laboratorie/ProductsLab";
 import "../Styles/Laboratorie.css"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Autocomplete from "./Laboratorie/AutoComplete";
 // import Autocomplete from "./Laboratorie/AutoComplete";
 import img from "./bg-main.jpg"
@@ -13,9 +13,19 @@ const Laboratorie = () => {
     const[currentPage, setCurrentPage] = useState(1) 
     const[postsPerPage, setPostsPerPage] = useState(12) 
   
-    const[pageNumberLimit] = useState(9) 
+    const[pageNumberLimit, setPageNumberLimit] = useState(9) 
     const[maxpageNumberLimit, setmaxpageNumberLimit] = useState(9) 
-    const[minpageNumberLimit, setminpageNumberLimit] = useState(0) 
+    const[minpageNumberLimit, setminpageNumberLimit] = useState(0)
+    
+
+
+    useEffect(()=> {
+        if (window.screen.width  < 991) {
+          setPageNumberLimit(3)
+          setmaxpageNumberLimit(3)
+        }
+    },[])
+
 
     const laboratorie = useSelector(store=> store.dataLaboratorie.array)
 
@@ -75,19 +85,19 @@ const Laboratorie = () => {
     }
 
     return (
-        <div className="Laboratorie">
-          <div className="BannerImg" style={{backgroundImage:`url(${img})`}}>
+        <div className="Laboratorie  ">
+          <div className="BannerImg  pb-4" style={{backgroundImage:`url(${img})`}}>
             <Information/>
             <NavigationBar/>
           </div>  
-          <div className="DisLaboratorie">
+          <div className="DisLaboratorie row col-11  col-xl-8 mx-auto p-0 mt-4">
             <Autocomplete laboratorie={laboratorie}/>
-            <div className="RenderList">
+            <div className="RenderList col-11 col-sm-9  col-lg-9 col-xl-10">
               <div className="ListLaboratorie">
                 {listRenderLaboratorie}
               </div>
               <div className="RenderPageNumbers">
-                <ul className="pageNumbers">
+                <ul className="pageNumbers" style={{color:"black"}}>
                   <li>
                     <button onClick={handlePrevbtn} disabled={currentPage == pageNumbers[0]? true:false}>Prev</button>
                   </li>

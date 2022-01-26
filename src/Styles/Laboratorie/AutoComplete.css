@@ -32,6 +32,7 @@
 
 .Results ul {
     list-style: none;
+    padding-left: 0;
 }
 
 .Results ul div {
@@ -39,6 +40,7 @@
     cursor: pointer;
     background-color: rgb(238, 238, 238);
     padding: 0.2rem;
+    color: black;
 }
 
 .Results hr{
