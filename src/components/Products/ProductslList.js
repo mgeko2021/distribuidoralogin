@@ -37,6 +37,7 @@ import postPedido from "../../services/postPedido";
 import ProductListRender from "./ProductsList/ProductsListRender";
 import { useEffect } from "react";
 import CategoriesRender from "./ProductsList/CategoriesRender";
+import LaboratoryRender from "./ProductsList/LaboratoryRender";
 // import CategoriesRender from "./ProductsList/categoriesRender";
 
 function ProductslList({ infoBanner }) {
@@ -48,6 +49,7 @@ function ProductslList({ infoBanner }) {
   const [minValue, setMinValue] = useState(0);
   const [grid, setGrid] = useState(100/4);
   const [categoriesRender, setCategoriesRender] = useState([]);
+  const [laboratory, setLaboratory] = useState([]);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(12);
@@ -63,10 +65,13 @@ function ProductslList({ infoBanner }) {
 
   useEffect(() => {
     const categories = []
+    const laboratory = []
     if(renderProducts.length > 0){
       for (let i = 0; i < renderProducts.length; i++) {
         if(renderProducts[i].CMLINEAS_DESCRIPCION){
-          categories.push(renderProducts[i].CMLINEAS_DESCRIPCION.toUpperCase() )
+          categories.push(renderProducts[i].CMLINEAS_DESCRIPCION.toUpperCase())
+          laboratory.push(renderProducts[i].CMCRICLA_DESCRIPCION.toUpperCase())
+
         }
       }
     }
@@ -74,8 +79,16 @@ function ProductslList({ infoBanner }) {
       return categories.indexOf(valor) === indice;
     }
     );
+    
+    const uniqueLaboratory = laboratory.filter((valor, indice) => {
+      return categories.indexOf(valor) === indice;
+    }
+    );
     if(unique.length > 0){
       setCategoriesRender(unique)
+    }
+    if(uniqueLaboratory.length > 0){
+      setLaboratory(uniqueLaboratory)
     }
   },[])
 
@@ -83,6 +96,9 @@ function ProductslList({ infoBanner }) {
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = renderProducts.slice(indexOfFirstPost, indexOfLastPost);
   console.log(currentPosts)
+  const listLaboratoryRender = categoriesRender.map((laboratory, index) => (
+    <LaboratoryRender key={index} laboratory={laboratory} />
+  ));
   const listCategoriesRender = categoriesRender.map((categoria, index) => (
     <CategoriesRender key={index} categoria={categoria} />
   ));
@@ -92,6 +108,10 @@ function ProductslList({ infoBanner }) {
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
+  };
+
+  const handleChangeSelct = () => {
+    // setValue(newValue);
   };
 
 
@@ -108,7 +128,7 @@ function ProductslList({ infoBanner }) {
               />
               <IconButton
                 style={{ width: "20%" }}
-                type="submit"
+                // type="submit"
                 aria-label="search"
               >
                 <SearchIcon style={{ color: "#36a8ff" }} />
@@ -147,7 +167,7 @@ function ProductslList({ infoBanner }) {
               <h3>Filtrar por tipo de laboratorios</h3>
               <FormControl
                 variant="filled"
-                style={{ width: "100%" }} /*className={classes.formControl}*/
+                style={{ width: "100%" }} 
               >
                 <InputLabel htmlFor="filled-age-native-simple">
                   Laboratorio
@@ -155,16 +175,14 @@ function ProductslList({ infoBanner }) {
                 <Select
                   native
                   value={null}
-                  onChange={handleChange}
+                  onChange={handleChangeSelct}
                   inputProps={{
                     name: "Laboratorio",
                     id: "filled-age-native-simple",
                   }}
                 >
                   <option aria-label="None" value="" />
-                  <option value={10}>Ten</option>
-                  <option value={20}>Twenty</option>
-                  <option value={30}>Thirty</option>
+                  {listLaboratoryRender}
                 </Select>
               </FormControl>
             </div>

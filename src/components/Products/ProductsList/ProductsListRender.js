@@ -29,7 +29,7 @@ const ProductListRender = ({products, grid}) => {
         <img src={`img/${products.ID_CODBAR}.jpg`} alt="img"></img>
         </Link>:
         <div className="ProductDescriptionRender">
-            <img src={`img/${products.ID_CODBAR}.jpg`} alt="img"></img>
+            <img src={`img/${products.ID_CODBAR}.jpg`} style={{width:`95%`}} alt="img"></img>
             <h3>{products.DESCRIPCION}</h3>
             <p>{formatNumber(products.PRECIO_MIN_1)}</p>
         </div>
