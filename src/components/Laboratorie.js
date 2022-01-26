@@ -85,7 +85,7 @@ const Laboratorie = () => {
     }
 
     return (
-        <div className="Laboratorie  ">
+        <div className="Laboratorie">
           <div className="BannerImg  pb-4" style={{backgroundImage:`url(${img})`}}>
             <Information/>
             <NavigationBar/>

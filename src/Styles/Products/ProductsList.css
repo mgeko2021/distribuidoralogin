@@ -3,11 +3,28 @@
 }
 
 .FilterProduct{
-    /* background-color: rgb(212, 212, 212); */
     margin: 0.1rem;
     text-align: left;
-    /* padding: 3rem 2.5rem; */
+}
 
+.ListRenderProduct{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.ProductsGrid{
+    margin-bottom: 2rem;
+    padding-bottom: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    border-bottom: 2px solid #c5c5c5;
+}
+
+.ProductsGrid p {
+    color: gray;
+    font-size: 1rem;
 }
 
 .FilterProductBox{
@@ -50,11 +67,76 @@
 }
 
 .ProductsRenderList{
-    background-color:rgb(155, 152, 152);
+    /* background-color:rgb(155, 152, 152); */
 }
 
 .SearchProduct{
     margin-bottom: 2rem;
 }
+
+
+
+
+
+.RenderPageNumbers{
+    margin: 2rem auto;
+}
+
+.pageNumbers{
+    display: flex;
+    list-style: none;
+    justify-content: center;
+}
+.pageNumbers li{
+    padding:0.5rem;
+    cursor: pointer;
+    margin: 0.1rem;
+    font-size: 1.3rem;
+
+}
+
+.pageNumbers li.active{
+    background-color: rgb(54, 168, 255);
+    color: black;
+    border-radius: 0.4rem;
+    color: white;
+}
+
+.pageNumbers li button {
+    background-color:transparent;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    color: black;
+}
+
+.pageNumbers li:hover{
+    background-color: rgb(209, 209, 209);
+    border-radius: 0.4rem;
+    color: black;
+}
+
+.pageNumbers li button:focus {
+    outline: none;
+}
+
+.Categories{
+    display: flex;
+    flex-direction: column;
+}
+
+.Categories span{
+    font-size: 0.8rem;
+}
+
+.Categories label{
+    margin: 0.2rem 0;
+}
+
+.Categories label span{
+    padding: 0;
+    margin-right: 0.4rem;
+}
+
 
 

@@ -1,0 +1,8 @@
+.ProductDescriptionRender h3{
+    font-size: 0.8rem;
+    margin-top: 0.8rem;
+}
+.ProductDescriptionRender p{
+    color: rgb(204, 10, 10);
+    font-size: 1.5rem;
+}

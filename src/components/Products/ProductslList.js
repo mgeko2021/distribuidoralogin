@@ -10,6 +10,11 @@ import SearchIcon from "@material-ui/icons/Search";
 import IconButton from "@material-ui/core/IconButton";
 import Divider from "@material-ui/core/Divider";
 import TextField from "@material-ui/core/TextField";
+import AppsIcon from '@material-ui/icons/Apps';
+import ViewComfyIcon from '@material-ui/icons/ViewComfy';
+import ViewModuleIcon from '@material-ui/icons/ViewModule';
+import ViewHeadlineIcon from '@material-ui/icons/ViewHeadline';
+import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 // import Checkbox from '@material-ui/core/Checkbox';
 import CreditCardIcon from "@material-ui/icons/CreditCard";
 import HouseIcon from "@material-ui/icons/House";
@@ -29,6 +34,10 @@ import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Slider from "@material-ui/core/Slider";
 import postPedido from "../../services/postPedido";
+import ProductListRender from "./ProductsList/ProductsListRender";
+import { useEffect } from "react";
+import CategoriesRender from "./ProductsList/CategoriesRender";
+// import CategoriesRender from "./ProductsList/categoriesRender";
 
 function ProductslList({ infoBanner }) {
   const { register, handleSubmit, reset } = useForm();
@@ -37,14 +46,55 @@ function ProductslList({ infoBanner }) {
   const [value, setValue] = useState([0, 900]);
   const [maxValue, setMaxValue] = useState(1200);
   const [minValue, setMinValue] = useState(0);
+  const [grid, setGrid] = useState(100/4);
+  const [categoriesRender, setCategoriesRender] = useState([]);
 
-  const renderProducts = useSelector(store=> store.dataProducts.array)
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage, setPostsPerPage] = useState(12);
+
+  const [pageNumberLimit, setPageNumberLimit] = useState(9);
+  const [maxpageNumberLimit, setmaxpageNumberLimit] = useState(9);
+  const [minpageNumberLimit, setminpageNumberLimit] = useState(0);
+
+  const renderProducts = useSelector((store) => store.dataProducts.array);
+
+  
 
 
+  useEffect(() => {
+    const categories = []
+    if(renderProducts.length > 0){
+      for (let i = 0; i < renderProducts.length; i++) {
+        if(renderProducts[i].CMLINEAS_DESCRIPCION){
+          categories.push(renderProducts[i].CMLINEAS_DESCRIPCION.toUpperCase() )
+        }
+      }
+    }
+    const unique = categories.filter((valor, indice) => {
+      return categories.indexOf(valor) === indice;
+    }
+    );
+    if(unique.length > 0){
+      setCategoriesRender(unique)
+    }
+  },[])
+
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = renderProducts.slice(indexOfFirstPost, indexOfLastPost);
+  console.log(currentPosts)
+  const listCategoriesRender = categoriesRender.map((categoria, index) => (
+    <CategoriesRender key={index} categoria={categoria} />
+  ));
+  const listRenderLaboratorie = currentPosts.map((products, index) => (
+    <ProductListRender key={index} products={products} grid={grid} />
+  ));
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
+
 
   return (
     <div className="ProductsList row col-sm-12  col-xl-9 mx-auto mt-5 mb-5 p-0">
@@ -52,32 +102,24 @@ function ProductslList({ infoBanner }) {
         <div className="FilterProduct col-12 col-sm-9 col-md-6 col-lg-3 mx-auto p-0'">
           <div className="SearchProduct ">
             <Paper component="form" style={{ backgroundColor: "#ECECEC" }}>
-              <InputBase placeholder="Buscar" style={{ paddingLeft: "1.5rem", width:"80%" }} />
-              <IconButton style={{width:"20%"}} type="submit" aria-label="search">
-                <SearchIcon style={{color:"#36a8ff"}} />
+              <InputBase
+                placeholder="Buscar"
+                style={{ paddingLeft: "1.5rem", width: "80%" }}
+              />
+              <IconButton
+                style={{ width: "20%" }}
+                type="submit"
+                aria-label="search"
+              >
+                <SearchIcon style={{ color: "#36a8ff" }} />
               </IconButton>
             </Paper>
           </div>
           <div className="FilterProductBox ">
             <div className="CategoriesProducts">
               <h3>Categorias</h3>
-              <div>
-                <FormControlLabel
-                  control={<Checkbox name="checkedB" color="primary" />}
-                  label={nameCheckBox}
-                />
-              </div>
-              <div>
-                <FormControlLabel
-                  control={<Checkbox name="checkedB" color="primary" />}
-                  label={nameCheckBox}
-                />
-              </div>
-              <div>
-                <FormControlLabel
-                  control={<Checkbox name="checkedB" color="primary" />}
-                  label={nameCheckBox}
-                />
+              <div className="Categories">
+                {listCategoriesRender}
               </div>
             </div>
             <div className="PriceRange">
@@ -128,10 +170,39 @@ function ProductslList({ infoBanner }) {
             </div>
           </div>
         </div>
-        <div className="ProductsRenderList col-12 col-sm-9 col-md-5 col-lg-8 p-0 mx-auto mt-5 ">
-          <div>
-            <h3>MOstrando 18 productos</h3>
+        <div className="ProductsRenderList col-12 col-sm-9 col-md-5 col-lg-8 p-0 mx-auto mt-0 ">
+          <div className="ProductsGrid">
+            <div className="IconsProductsGrid">
+              <ViewModuleIcon style={{ color: "#36a8ff" }} onClick={()=>{setPostsPerPage(6)
+              setGrid((100/3))}}/>
+              <AppsIcon style={{ color: "#36a8ff" }} onClick={()=>{setPostsPerPage(9)
+              setGrid((100/3))}}/>
+              <ViewComfyIcon style={{ color: "#36a8ff" }} onClick={()=>{setPostsPerPage(12)
+              setGrid((100/4))}}/>
+            </div>
+            <div className="CountProductsGrid">
+              <p className="m-0"> Encontrado {renderProducts.length ?renderProducts.length: 0 } productos</p>
+            </div>
+            <div className="OrderRenderProduct">
+              <p className="m-0"><ViewHeadlineIcon/> Ordenar por <KeyboardArrowDownIcon/> </p> 
           </div>
+          </div>
+          <div className="ListRenderProduct">
+            {listRenderLaboratorie}
+          </div>
+          {/* <div className="RenderPageNumbers">
+                <ul className="pageNumbers" style={{color:"black"}}>
+                  <li>
+                    <button onClick={handlePrevbtn} disabled={currentPage == pageNumbers[0]? true:false}>Prev</button>
+                  </li>
+                    {pageDrecrementBtn}
+                    {renderPageNumbers}
+                    {pageIncrementBtn}
+                  <li>
+                    <button onClick={handleNextbtn} disabled={currentPage == pageNumbers[pageNumbers.length - 1]? true:false}>Next</button>
+                  </li>
+                </ul>
+              </div>         */}
         </div>
       </div>
     </div>
