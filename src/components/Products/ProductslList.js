@@ -49,6 +49,7 @@ function ProductslList({ infoBanner }) {
   const [categoriesRender, setCategoriesRender] = useState([]);
   const [laboratory, setLaboratory] = useState([]);
   const [order, setOrder] = useState(false);
+  const [randomNumber, setRandomNumber] = useState(0);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(12);
@@ -56,13 +57,14 @@ function ProductslList({ infoBanner }) {
   const [pageNumberLimit, setPageNumberLimit] = useState(9);
   const [maxpageNumberLimit, setmaxpageNumberLimit] = useState(9);
   const [minpageNumberLimit, setminpageNumberLimit] = useState(0);
-  const [renderProducts, setRenderProducts] = useState(useSelector((store) => store.dataProducts.array));
+  const [renderProducts, setRenderProducts] = useState(
+    useSelector((store) => store.dataProducts.array)
+  );
 
   // let renderProducts = useSelector((store) => store.dataProducts.array);
 
   useEffect(() => {
-
-    localStorage.setItem('datos', JSON.stringify(renderProducts));
+    localStorage.setItem("datos", JSON.stringify(renderProducts));
     const categories = [];
     const laboratory = [];
     if (renderProducts.length > 0) {
@@ -75,15 +77,14 @@ function ProductslList({ infoBanner }) {
     }
 
     var maxAndMin = renderProducts.slice(0);
-    maxAndMin.sort(function(a,b) {
-        return a.PRECIO_MIN_1 - b.PRECIO_MIN_1;
+    maxAndMin.sort(function (a, b) {
+      return a.PRECIO_MIN_1 - b.PRECIO_MIN_1;
     });
-    const maximoValor= Number(maxAndMin[maxAndMin.length - 1].PRECIO_MIN_1)
-    const minimoValor = Number(maxAndMin[0].PRECIO_MIN_1)
-    setMaxValue(maximoValor)
-    setMinValue(minimoValor)
-    setValue([minimoValor,maximoValor])
-
+    const maximoValor = Number(maxAndMin[maxAndMin.length - 1].PRECIO_MIN_1);
+    const minimoValor = Number(maxAndMin[0].PRECIO_MIN_1);
+    setMaxValue(maximoValor);
+    setMinValue(minimoValor);
+    setValue([minimoValor, maximoValor]);
 
     const unique = categories.filter((valor, indice) => {
       return categories.indexOf(valor) === indice;
@@ -98,8 +99,12 @@ function ProductslList({ infoBanner }) {
     if (uniqueLaboratory.length > 0) {
       setLaboratory(uniqueLaboratory);
     }
-  }, []);
 
+    const randomNumber = Math.floor(
+      Math.random() * (renderProducts.length - 1)
+    );
+    setRandomNumber(randomNumber);
+  }, []);
 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
@@ -116,12 +121,14 @@ function ProductslList({ infoBanner }) {
   ));
 
   const handleChange = (event, newValue) => {
-    var datos = JSON.parse(localStorage.getItem('datos'));
-    setRenderProducts(datos)
+    var datos = JSON.parse(localStorage.getItem("datos"));
+    setRenderProducts(datos);
     setValue(newValue);
-    const rangePrice = renderProducts.filter(price=> {return price.PRECIO_MIN_1 >= value[0] && price.PRECIO_MIN_1 <= value[1]})
+    const rangePrice = renderProducts.filter((price) => {
+      return price.PRECIO_MIN_1 >= value[0] && price.PRECIO_MIN_1 <= value[1];
+    });
     setTimeout(() => {
-      setRenderProducts(rangePrice)
+      setRenderProducts(rangePrice);
     }, 500);
   };
 
@@ -129,41 +136,37 @@ function ProductslList({ infoBanner }) {
     // setValue(newValue);
   };
 
-  const sortNumbersLower = ()=>{
-
+  const sortNumbersLower = () => {
     var byLowerPrice = renderProducts.slice(0);
-byLowerPrice.sort(function(a,b) {
-    return a.PRECIO_MIN_1 - b.PRECIO_MIN_1;
-});
+    byLowerPrice.sort(function (a, b) {
+      return a.PRECIO_MIN_1 - b.PRECIO_MIN_1;
+    });
 
-setRenderProducts(byLowerPrice)
-    let arrays = []
+    setRenderProducts(byLowerPrice);
+    let arrays = [];
     for (let i = 0; i < byLowerPrice.length; i++) {
       arrays.push(byLowerPrice[i].PRECIO_MIN_1);
     }
-
-
-  }
-  const sortNumbersUpper = ()=>{
-
+  };
+  const sortNumbersUpper = () => {
     var byLowerPrice = renderProducts.slice(0);
-byLowerPrice.sort(function(a,b) {
-    return b.PRECIO_MIN_1 - a.PRECIO_MIN_1 ;
-});
+    byLowerPrice.sort(function (a, b) {
+      return b.PRECIO_MIN_1 - a.PRECIO_MIN_1;
+    });
 
-setRenderProducts(byLowerPrice)
-    let arrays = []
+    setRenderProducts(byLowerPrice);
+    let arrays = [];
     for (let i = 0; i < byLowerPrice.length; i++) {
       arrays.push(byLowerPrice[i].PRECIO_MIN_1);
     }
+  };
 
-
+  function formatNumber(number) {
+    return new Intl.NumberFormat("ES-MX", {
+      style: "currency",
+      currency: "COP",
+    }).format(number);
   }
-
-  const rangePrice = () =>{
-  }
-
-
 
   return (
     <div className="ProductsList row col-sm-12  col-xl-9 mx-auto mt-5 mb-5 p-0">
@@ -205,11 +208,24 @@ setRenderProducts(byLowerPrice)
                 Rango: {value[0]}$ - {value[1]}${" "}
               </p>
             </div>
-            <div className="OffersProducts">
-              <h3>Ofertas</h3>
-              <img src="carrito_vacio.png" alt="" />
-              <p>$Precio</p>
-            </div>
+            {renderProducts[randomNumber].ID_CODBAR ? (
+              <div className="OffersProducts">
+                <h3>Ofertas</h3>
+
+                <img
+                  src={`img/${renderProducts[randomNumber].ID_CODBAR}.jpg`}
+                  alt="img"
+                  style={{ width: "100%" }}
+                />
+                <p style={{ color: "green" }}>
+                  {formatNumber(renderProducts[randomNumber].PRECIO_MIN_1)}
+                </p>
+              </div>
+            ) : (
+              <div className="OffersProducts">
+                <h3>Ofertas</h3>
+              </div>
+            )}
             <div>
               <h3>Filtrar por tipo de laboratorios</h3>
               <FormControl variant="filled" style={{ width: "100%" }}>
@@ -259,29 +275,39 @@ setRenderProducts(byLowerPrice)
             </div>
             <div className="CountProductsGrid">
               <p className="m-0">
-                Encontrado {renderProducts.length
-                  ? renderProducts.length
-                  : 0} {" "}
+                Encontrado {renderProducts.length ? renderProducts.length : 0}{" "}
                 productos
               </p>
             </div>
             <div className="OrderRenderProduct">
               <p className="m-0">
-                <ViewHeadlineIcon /> Ordenar por <KeyboardArrowDownIcon onClick={() => {
-                  setOrder(!order);
-
-                }}  style={{cursor:"pointer"}}/>
-
-                   { order?<div className="OrderProducts">
-                    <button onClick={() => {
-                  setOrder(!order);
-                  sortNumbersUpper()
-                }}>Mayor a menor</button>
-                    <button onClick={() => {
-                  setOrder(!order);
-                  sortNumbersLower()
-                }}>Menor a mayor</button> </div>: null
-                    }
+                <ViewHeadlineIcon /> Ordenar por{" "}
+                <KeyboardArrowDownIcon
+                  onClick={() => {
+                    setOrder(!order);
+                  }}
+                  style={{ cursor: "pointer" }}
+                />
+                {order ? (
+                  <div className="OrderProducts">
+                    <button
+                      onClick={() => {
+                        setOrder(!order);
+                        sortNumbersUpper();
+                      }}
+                    >
+                      Mayor a menor
+                    </button>
+                    <button
+                      onClick={() => {
+                        setOrder(!order);
+                        sortNumbersLower();
+                      }}
+                    >
+                      Menor a mayor
+                    </button>{" "}
+                  </div>
+                ) : null}
               </p>
             </div>
           </div>
