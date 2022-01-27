@@ -42,8 +42,8 @@ function ProductslList({ infoBanner }) {
   const { register, handleSubmit, reset } = useForm();
 
   const [nameCheckBox, useNameCheckBox] = useState("bayer");
-  const [value, setValue] = useState([0, 900]);
-  const [maxValue, setMaxValue] = useState(1200);
+  const [value, setValue] = useState([0, 10000]);
+  const [maxValue, setMaxValue] = useState(9000);
   const [minValue, setMinValue] = useState(0);
   const [grid, setGrid] = useState(100 / 4);
   const [categoriesRender, setCategoriesRender] = useState([]);
@@ -61,6 +61,8 @@ function ProductslList({ infoBanner }) {
   // let renderProducts = useSelector((store) => store.dataProducts.array);
 
   useEffect(() => {
+
+    localStorage.setItem('datos', JSON.stringify(renderProducts));
     const categories = [];
     const laboratory = [];
     if (renderProducts.length > 0) {
@@ -71,6 +73,18 @@ function ProductslList({ infoBanner }) {
         }
       }
     }
+
+    var maxAndMin = renderProducts.slice(0);
+    maxAndMin.sort(function(a,b) {
+        return a.PRECIO_MIN_1 - b.PRECIO_MIN_1;
+    });
+    const maximoValor= Number(maxAndMin[maxAndMin.length - 1].PRECIO_MIN_1)
+    const minimoValor = Number(maxAndMin[0].PRECIO_MIN_1)
+    setMaxValue(maximoValor)
+    setMinValue(minimoValor)
+    setValue([minimoValor,maximoValor])
+
+
     const unique = categories.filter((valor, indice) => {
       return categories.indexOf(valor) === indice;
     });
@@ -85,6 +99,7 @@ function ProductslList({ infoBanner }) {
       setLaboratory(uniqueLaboratory);
     }
   }, []);
+
 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
@@ -101,7 +116,13 @@ function ProductslList({ infoBanner }) {
   ));
 
   const handleChange = (event, newValue) => {
+    var datos = JSON.parse(localStorage.getItem('datos'));
+    setRenderProducts(datos)
     setValue(newValue);
+    const rangePrice = renderProducts.filter(price=> {return price.PRECIO_MIN_1 >= value[0] && price.PRECIO_MIN_1 <= value[1]})
+    setTimeout(() => {
+      setRenderProducts(rangePrice)
+    }, 500);
   };
 
   const handleChangeSelct = () => {
@@ -135,7 +156,14 @@ setRenderProducts(byLowerPrice)
     for (let i = 0; i < byLowerPrice.length; i++) {
       arrays.push(byLowerPrice[i].PRECIO_MIN_1);
     }
+
+
   }
+
+  const rangePrice = () =>{
+  }
+
+
 
   return (
     <div className="ProductsList row col-sm-12  col-xl-9 mx-auto mt-5 mb-5 p-0">
@@ -241,10 +269,10 @@ setRenderProducts(byLowerPrice)
               <p className="m-0">
                 <ViewHeadlineIcon /> Ordenar por <KeyboardArrowDownIcon onClick={() => {
                   setOrder(!order);
-                
+
                 }}  style={{cursor:"pointer"}}/>
-         
-                   { order?<div className="OrderProducts">                 
+
+                   { order?<div className="OrderProducts">
                     <button onClick={() => {
                   setOrder(!order);
                   sortNumbersUpper()
@@ -270,7 +298,7 @@ setRenderProducts(byLowerPrice)
                     <button onClick={handleNextbtn} disabled={currentPage == pageNumbers[pageNumbers.length - 1]? true:false}>Next</button>
                   </li>
                 </ul>
-              </div>         */}
+            </div>         */}
         </div>
       </div>
     </div>
