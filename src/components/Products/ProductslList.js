@@ -48,6 +48,7 @@ function ProductslList({ infoBanner }) {
   const [grid, setGrid] = useState(100 / 4);
   const [categoriesRender, setCategoriesRender] = useState([]);
   const [laboratory, setLaboratory] = useState([]);
+  const [order, setOrder] = useState(false);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(12);
@@ -55,8 +56,9 @@ function ProductslList({ infoBanner }) {
   const [pageNumberLimit, setPageNumberLimit] = useState(9);
   const [maxpageNumberLimit, setmaxpageNumberLimit] = useState(9);
   const [minpageNumberLimit, setminpageNumberLimit] = useState(0);
+  const [renderProducts, setRenderProducts] = useState(useSelector((store) => store.dataProducts.array));
 
-  const renderProducts = useSelector((store) => store.dataProducts.array);
+  // let renderProducts = useSelector((store) => store.dataProducts.array);
 
   useEffect(() => {
     const categories = [];
@@ -105,6 +107,35 @@ function ProductslList({ infoBanner }) {
   const handleChangeSelct = () => {
     // setValue(newValue);
   };
+
+  const sortNumbersLower = ()=>{
+
+    var byLowerPrice = renderProducts.slice(0);
+byLowerPrice.sort(function(a,b) {
+    return a.PRECIO_MIN_1 - b.PRECIO_MIN_1;
+});
+
+setRenderProducts(byLowerPrice)
+    let arrays = []
+    for (let i = 0; i < byLowerPrice.length; i++) {
+      arrays.push(byLowerPrice[i].PRECIO_MIN_1);
+    }
+
+
+  }
+  const sortNumbersUpper = ()=>{
+
+    var byLowerPrice = renderProducts.slice(0);
+byLowerPrice.sort(function(a,b) {
+    return b.PRECIO_MIN_1 - a.PRECIO_MIN_1 ;
+});
+
+setRenderProducts(byLowerPrice)
+    let arrays = []
+    for (let i = 0; i < byLowerPrice.length; i++) {
+      arrays.push(byLowerPrice[i].PRECIO_MIN_1);
+    }
+  }
 
   return (
     <div className="ProductsList row col-sm-12  col-xl-9 mx-auto mt-5 mb-5 p-0">
@@ -200,16 +231,29 @@ function ProductslList({ infoBanner }) {
             </div>
             <div className="CountProductsGrid">
               <p className="m-0">
-                {" "}
                 Encontrado {renderProducts.length
                   ? renderProducts.length
-                  : 0}{" "}
+                  : 0} {" "}
                 productos
               </p>
             </div>
             <div className="OrderRenderProduct">
               <p className="m-0">
-                <ViewHeadlineIcon /> Ordenar por <KeyboardArrowDownIcon />{" "}
+                <ViewHeadlineIcon /> Ordenar por <KeyboardArrowDownIcon onClick={() => {
+                  setOrder(!order);
+                
+                }}  style={{cursor:"pointer"}}/>
+         
+                   { order?<div className="OrderProducts">                 
+                    <button onClick={() => {
+                  setOrder(!order);
+                  sortNumbersUpper()
+                }}>Mayor a menor</button>
+                    <button onClick={() => {
+                  setOrder(!order);
+                  sortNumbersLower()
+                }}>Menor a mayor</button> </div>: null
+                    }
               </p>
             </div>
           </div>

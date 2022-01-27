@@ -139,4 +139,20 @@
 }
 
 
+/* order */
 
+
+.OrderProducts{
+    position: absolute;
+}
+
+.OrderProducts button{
+    border: none;
+    padding: 0.1rem 1rem;
+}
+
+.OrderProducts button:hover{
+    background-color: #36a8ff;
+    color: white;
+    padding: 0.1rem 1rem;
+}
