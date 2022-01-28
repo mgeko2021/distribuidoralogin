@@ -8,6 +8,7 @@ import TextField from '@material-ui/core/TextField';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import { getCountProductBuyAction} from '../../../../redux/itemsCarDucks';
 import { useForm } from "react-hook-form";
+import { getProductFavorite } from '../../../../redux/itemFavoriteDucks';
 
 
 const DescriptionProduct = () => {
@@ -17,7 +18,6 @@ const DescriptionProduct = () => {
 
     const counItem = useSelector(store=> store.countBuyProduct)
     const item = useSelector(store=> store.buyProduct.array)
-    console.log(item)
 
 
     const itemLocal = JSON.parse(window.localStorage.getItem("item"))
@@ -51,10 +51,23 @@ const DescriptionProduct = () => {
         dispatch(getCountProductBuyAction(productProperties))
     };
 
+    const onFavorite = () => {
+        
+        const productProperties = {
+            item_id: item.ID_ITEM,
+            item_ext: item.ID_CODBAR,
+            item_nombre: item.DESCRIPCION,
+            item_referencia: item.ID_REFERENCIA,
+            valor_unitario: item.PRECIO_MIN_1,
+            porc_dcto: item.PORC_DES1,
+        }
+        console.log(productProperties)
+        dispatch(getProductFavorite(productProperties))
+    };
+
     const changeColor = (event) => {
         event.currentTarget.style.backgroundColor == "gray"? event.currentTarget.style.backgroundColor = "red":event.currentTarget.style.backgroundColor = "gray"
     }
-
 
     function formatNumber(number) {
         return new Intl.NumberFormat("ES-MX",{
@@ -115,7 +128,14 @@ const DescriptionProduct = () => {
                             type="number" className="Buy" variant="contained" size="medium" color="primary" startIcon={<ShoppingCartIcon />}
                             >Añadir al carrito</Button>
                             <Button
-                            className="Like"style={{backgroundColor: 'gray'}} onClick={(event)=>{changeColor(event)}}
+                            className="Like"style={{backgroundColor: 'gray'}} onClick={
+                                (event)=>{
+                                    changeColor(event)
+                                console.log("hola")
+                                // onFavorite()
+
+
+                                }}
                                 variant="contained"
                                 color="default"
                                 startIcon={<FavoriteBorderIcon />}

@@ -6,12 +6,14 @@ import negociemosReducer from './negociemosDucks'
 import produtBuyReducer from './itemBuyDucks'
 import countProdutReducer from './itemsCarDucks'
 import laboratorieReducer from './laboratorieDucks'
+import favoriteProductsReducer from './itemFavoriteDucks'
 
 const rootReducer = combineReducers({
     dataProducts: negociemosReducer,
     buyProduct: produtBuyReducer,
     countBuyProduct: countProdutReducer,
-    dataLaboratorie: laboratorieReducer
+    dataLaboratorie: laboratorieReducer,
+    favoritesProducts:favoriteProductsReducer
     
 })
 

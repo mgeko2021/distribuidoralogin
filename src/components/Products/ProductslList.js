@@ -271,9 +271,9 @@ function ProductslList({ infoBanner }) {
     }
 
   return (
-    <div className="ProductsList row col-sm-12  col-xl-9 mx-auto mt-5 mb-5 p-0">
-      <div className="ProductListFlex d-md-flex col-10 col-sm-11 col-xl-12  mx-auto p-0">
-        <div className="FilterProduct col-12 col-sm-9 col-md-6 col-lg-3 mx-auto p-0'">
+    <div className="ProductsList row  col-sm-12  col-xl-9 mx-auto mt-5 mb-5 p-0">
+      <div className="ProductListFlex d-lg-flex col-12 col-sm-11 col-md-11  col-xl-12  mx-auto p-0">
+        <div className="FilterProduct col-12 col-sm-9 col-md-9 col-lg-4 mx-auto p-0'">
           <div className="SearchProduct ">
             <Paper style={{ backgroundColor: "#ECECEC" }}>
               <InputBase
@@ -320,7 +320,7 @@ function ProductslList({ infoBanner }) {
               <Link 
               to={`/compraproducto/${offerProducts[randomNumber].ID_ITEM}`} style={{textDecoration:"none"}}
               onClick={()=>{dispatch(getProductBuyAction(offerProducts[randomNumber]))}}
-      >
+          >
               <div className="OffersProducts">
                 <h3>Ofertas</h3>
                 <img
@@ -328,7 +328,7 @@ function ProductslList({ infoBanner }) {
                   alt="img"
                   style={{ width: "100%" }}
                 />
-                    <h3>{offerProducts[randomNumber].DESCRIPCION}</h3>
+                    <h2>{offerProducts[randomNumber].DESCRIPCION}</h2>
                     {auth.tokenAuth ?
                       <p style={{ color: "green" }}>
                       {formatNumber(offerProducts[randomNumber].PRECIO_MIN_1)}
@@ -364,7 +364,7 @@ function ProductslList({ infoBanner }) {
             </div>
           </div>
         </div>
-        <div className="ProductsRenderList col-12 col-sm-9 col-md-5 col-lg-8 p-0 mx-auto mt-0 ">
+        <div className="ProductsRenderList col-11 col-sm-9 col-md-8 col-lg-8 p-0 mx-auto mt-0 ">
           <div className="ProductsGrid">
             <div className="IconsProductsGrid">
               <ViewModuleIcon

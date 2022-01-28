@@ -1,0 +1,22 @@
+.AccountRender{
+    color: black;
+}
+
+.InformatioAccount{
+    box-shadow: 0px 0px 3px 0.5px #888888;
+    padding: 3rem 3rem;
+    text-align: left;
+    background-color: white;  /* provisional */
+    display: flex;
+    flex-direction: column;
+}
+.InformatioAccount h3{
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
+}
+
+.InformatioAccount p{
+    border-bottom: 1.5px solid rgb(173, 173, 173);
+    padding-bottom: 0.5rem;
+    font-size: 1.3rem;
+}

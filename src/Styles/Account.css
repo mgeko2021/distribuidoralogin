@@ -1,0 +1,9 @@
+.AccountRoute h2{
+    color: black;
+    margin: 0;
+    font-weight: 700;
+}
+.AccountRoute p{
+    color: gray;
+    font-size: 1.1rem;
+}

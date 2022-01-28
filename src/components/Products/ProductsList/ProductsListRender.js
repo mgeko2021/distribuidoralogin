@@ -26,12 +26,14 @@ const ProductListRender = ({products, grid}) => {
         to={`/compraproducto/${products.ID_ITEM}`} style={{textDecoration:"none"}}
         onClick={()=>{dispatch(getProductBuyAction(products))}}
         >
-        <img src={`img/${products.ID_CODBAR}.jpg`} alt="img"></img>
+        {products.ID_CODBAR? <img src={`img/${products.ID_CODBAR}.jpg`} style={{width:`95%`}} alt="img"></img>:
+        <img src={`404.png`} style={{width:`95%`}} alt="img"></img>}
         <h3>{products.DESCRIPCION}</h3>
             <p>{formatNumber(products.PRECIO_MIN_1)}</p>
         </Link>:
         <div className="ProductDescriptionRender">
-            <img src={`img/${products.ID_CODBAR}.jpg`} style={{width:`95%`}} alt="img"></img>
+            {products.ID_CODBAR?<img src={`img/${products.ID_CODBAR}.jpg`} style={{width:`95%`}} alt="img"></img>:
+            <img src={`404.png`} style={{width:`95%`}} alt="img"></img>}
             <h3>{products.DESCRIPCION}</h3>
         </div>
         }

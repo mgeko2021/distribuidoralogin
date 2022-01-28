@@ -14,7 +14,7 @@ const ProductsLab = ({laboratorie}) => {
     console.log(laboratorie)
 
     return ( 
-        <div className="ProductsLab mx-auto">
+        <div className="ProductsLab mx-auto mb-2" style={{width:`25%`}}>
             {/* {laboratorie.ID_CODBAR? <img src={`img/${laboratorie.ID_CODBAR}.jpg`} alt="img"></img>:<img src={`404.png`} alt="404"></img>} */}
             {auth.tokenAuth?
             <Link 
@@ -22,13 +22,13 @@ const ProductsLab = ({laboratorie}) => {
             onClick={()=>{dispatch(getProductBuyAction(laboratorie))}}
             >
             {laboratorie.ID_CODBAR? 
-            <img src={`img/${laboratorie.ID_CODBAR}.jpg`} alt="img"></img>:
-            <img src={"img/036600813719.jpg"} alt="404"></img>}
+            <img src={`img/${laboratorie.ID_CODBAR}.jpg`} style={{width:"95%"}} alt="img"></img>:
+            <img src={"img/036600813719.jpg"} alt="404" style={{width:"95%"}}></img>}
             </Link>:
             <Link to={`${location.pathname}`} style={{textDecoration:"none"}}>
                  {laboratorie.ID_CODBAR? 
-            <img src={`img/${laboratorie.ID_CODBAR}.jpg`} alt="img"></img>:
-            <img src={"img/036600813719.jpg"} alt="404"></img>}
+            <img src={`img/${laboratorie.ID_CODBAR}.jpg`} style={{width:"95%"}} alt="img"></img>:
+            <img src={"img/036600813719.jpg"} style={{width:"95%"}} alt="404"></img>}
             </Link>
 
             }

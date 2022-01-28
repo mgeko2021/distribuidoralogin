@@ -62,13 +62,19 @@
     border-bottom: 2px solid #c5c5c5;
 }
 
-.OffersProducts h3 {
+.OffersProducts h2 {
     text-align: center;
-    font-size: 0.9rem;
+    font-size: 1rem;
+    color: black;
+}
+.OffersProducts h3 {
+    color: black;
 }
 
 .OffersProducts p {
     text-align: center;
+    font-size: 1.3rem;
+    font-weight: 600;
 }
 
 .ProductsRenderList{

@@ -14,6 +14,7 @@ import { useForm } from "react-hook-form";
 import postToken from "../../services/postToken";
 import postEmail from "../../services/postEmail";
 import mailLogin from "../../services/mailLogin";
+import { NavLink } from "react-router-dom";
 
 const Information = () => {
   const [buttonPopUp, setButtonPopUp] = useState(false);
@@ -109,7 +110,17 @@ const Information = () => {
         </span>
       </div>
       <div className="Loginbtn col-md-4 ">
-        <Button
+      {auth.tokenAuth? 
+      <NavLink to="/cuenta" style={{textDecoration:"none"}}> 
+      <Button
+          className="Loginbtn"
+          variant="contained"
+          color="secondary"
+        >
+          <AccountCircleIcon />
+          Cuenta
+        </Button>
+        </NavLink>:  <Button
           className="Loginbtn"
           onClick={() => setButtonPopUp(true)}
           variant="contained"
@@ -117,7 +128,9 @@ const Information = () => {
         >
           <AccountCircleIcon />
           Inciar Sesion
-        </Button>
+        </Button>}
+
+  
         <PopUp trigger={buttonPopUp} setTrigger={setButtonPopUp}>
           <div className="popup-text">
             <h2>Acceso a Clientes</h2>
