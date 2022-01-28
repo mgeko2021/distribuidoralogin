@@ -100,10 +100,11 @@ function ProductslList({ infoBanner }) {
       setLaboratory(uniqueLaboratory);
     }
 
-    const randomNumber = Math.floor(
-      Math.random() * (renderProducts.length - 1)
-    );
-    setRandomNumber(randomNumber);
+    // const randomNumberConst = Math.floor(
+    //   Math.random() * (renderProducts.length - 1)
+    // );
+    // setRandomNumber(randomNumberConst);
+
   }, []);
 
   const indexOfLastPost = currentPage * postsPerPage;
@@ -121,12 +122,19 @@ function ProductslList({ infoBanner }) {
   ));
 
   const handleChange = (event, newValue) => {
+    
     var datos = JSON.parse(localStorage.getItem("datos"));
     setRenderProducts(datos);
     setValue(newValue);
     const rangePrice = renderProducts.filter((price) => {
-      return price.PRECIO_MIN_1 >= value[0] && price.PRECIO_MIN_1 <= value[1];
+      if(price.PRECIO_MIN_1){
+        return price.PRECIO_MIN_1 >= value[0] && price.PRECIO_MIN_1 <= value[1];
+      }
     });
+
+    console.log(datos)
+    console.log(rangePrice)
+
     setTimeout(() => {
       setRenderProducts(rangePrice);
     }, 500);
@@ -190,7 +198,9 @@ function ProductslList({ infoBanner }) {
           <div className="FilterProductBox ">
             <div className="CategoriesProducts">
               <h3>Categorias</h3>
-              <div className="Categories">{listCategoriesRender}</div>
+              <div className="Categories">
+                {listCategoriesRender}
+              </div>
             </div>
             <div className="PriceRange">
               <h3>Rango de precios</h3>
@@ -208,17 +218,22 @@ function ProductslList({ infoBanner }) {
                 Rango: {value[0]}$ - {value[1]}${" "}
               </p>
             </div>
-            {renderProducts[randomNumber].ID_CODBAR ? (
+            {renderProducts[ Math.floor(
+      Math.random() * (renderProducts.length - 1)
+    )].ID_CODBAR ? (
               <div className="OffersProducts">
                 <h3>Ofertas</h3>
-
                 <img
-                  src={`img/${renderProducts[randomNumber].ID_CODBAR}.jpg`}
+                  src={`img/${renderProducts[ Math.floor(
+      Math.random() * (renderProducts.length - 1)
+    )].ID_CODBAR}.jpg`}
                   alt="img"
                   style={{ width: "100%" }}
                 />
                 <p style={{ color: "green" }}>
-                  {formatNumber(renderProducts[randomNumber].PRECIO_MIN_1)}
+                  {formatNumber(renderProducts[ Math.floor(
+      Math.random() * (renderProducts.length - 1)
+    )].PRECIO_MIN_1)}
                 </p>
               </div>
             ) : (
