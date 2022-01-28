@@ -104,13 +104,13 @@ const NavigationBar = () => {
           </div>
         ) : null}
         {auth.tokenAuth ? (
-          <Link className="BuyCar col-2" to="/compras">
+          <a className="BuyCar col-2" href="/#/compras">
             <ShoppingCartIcon className="Car"></ShoppingCartIcon>
             <div className="SelectedProducts">
               <h3>{counItem.length != 0 ? counItem.length : 0}</h3>
               {/* <h3>{counItemLocal && counItem.length == 0? counItemLocal.length : null}</h3> */}
             </div>
-          </Link>
+          </a>
         ) : (
           <Link className="BuyCar col-2" to="/">
             <ShoppingCartIcon className="Car"></ShoppingCartIcon>

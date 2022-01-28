@@ -7,7 +7,7 @@ export const AuthContext = createContext() // es el contexto que va a contener l
 const AuthProvider = ({children}) => {  //aqui genero la autenticacion con un conetxo de los datos para darselo a todos los compoennete hijos y asi mismo se renderizen o no
 
     const [user, setUser] = useState(null)
-    const [tokenAuth, setTokenAuth] = useState(null)
+    const [tokenAuth, setTokenAuth] = useState(true)
     const [itemProductBuy, setItemProductBuy] = useState(null)
     const [ligth, setLight] = useState()
 

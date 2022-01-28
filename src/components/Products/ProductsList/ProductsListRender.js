@@ -19,7 +19,7 @@ const ProductListRender = ({products, grid}) => {
     }
 
     return (
-        <div className="ProductsRender mx-auto mb-2" style={{width:`${grid}%`}}>
+        <div className="ProductDescriptionRender mx-auto mb-2" style={{width:`${grid}%`}}>
         {/* {laboratorie.ID_CODBAR? <img src={`img/${laboratorie.ID_CODBAR}.jpg`} alt="img"></img>:<img src={`404.png`} alt="404"></img>} */}
         {auth.tokenAuth?
         <Link 
@@ -27,11 +27,12 @@ const ProductListRender = ({products, grid}) => {
         onClick={()=>{dispatch(getProductBuyAction(products))}}
         >
         <img src={`img/${products.ID_CODBAR}.jpg`} alt="img"></img>
+        <h3>{products.DESCRIPCION}</h3>
+            <p>{formatNumber(products.PRECIO_MIN_1)}</p>
         </Link>:
         <div className="ProductDescriptionRender">
             <img src={`img/${products.ID_CODBAR}.jpg`} style={{width:`95%`}} alt="img"></img>
             <h3>{products.DESCRIPCION}</h3>
-            <p>{formatNumber(products.PRECIO_MIN_1)}</p>
         </div>
         }
 
