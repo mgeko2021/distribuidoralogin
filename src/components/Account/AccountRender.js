@@ -4,12 +4,14 @@ import PersonIcon from '@material-ui/icons/Person';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const AccountRender = () => {
     const [favoritesProducts, setFavoritesProducts] = useState([])
 
-    // useSelector((store)=>)
+
+
+    // const item = useSelector((store)=>store.favoritesProducts)
     useEffect(()=>{
         
     },[])

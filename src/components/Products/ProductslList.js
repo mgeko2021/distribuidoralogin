@@ -68,14 +68,12 @@ function ProductslList({ infoBanner }) {
     useSelector((store) => store.dataProducts.array)
   );
 
-  const auth = useAuth()
-  const dispatch = useDispatch()
-
+  const auth = useAuth();
+  const dispatch = useDispatch();
 
   // let renderProducts = useSelector((store) => store.dataProducts.array);
 
   useEffect(() => {
-
     const randomNumberConst = Math.floor(
       Math.random() * (renderProducts.length - 1)
     );
@@ -115,11 +113,7 @@ function ProductslList({ infoBanner }) {
     if (uniqueLaboratory.length > 0) {
       setLaboratory(uniqueLaboratory);
     }
-
-
-
   }, []);
-
 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
@@ -136,24 +130,22 @@ function ProductslList({ infoBanner }) {
   ));
 
   const handleChange = (event, newValue) => {
-
     var datos = JSON.parse(localStorage.getItem("datos"));
     setRenderProducts(datos);
     setValue(newValue);
     const rangePrice = renderProducts.filter((price) => {
-      if(price.PRECIO_MIN_1){
+      if (price.PRECIO_MIN_1) {
         return price.PRECIO_MIN_1 >= value[0] && price.PRECIO_MIN_1 <= value[1];
       }
     });
 
-    console.log(datos)
-    console.log(rangePrice)
+    console.log(datos);
+    console.log(rangePrice);
 
     setTimeout(() => {
       setRenderProducts(rangePrice);
     }, 500);
   };
-
 
   const handleChangeSelct = () => {
     // setValue(newValue);
@@ -191,84 +183,82 @@ function ProductslList({ infoBanner }) {
     }).format(number);
   }
 
-
-
   //////////////////
   // colocar el numero de navegador
 
+  const pageNumbers = [];
+  for (let i = 1; i <= Math.ceil(renderProducts.length / postsPerPage); i++) {
+    pageNumbers.push(i);
+  }
+  const handeclick = (event) => {
+    setCurrentPage(Number(event.target.id));
+  };
 
-  const pageNumbers = []
-    for(let i = 1; i <= Math.ceil(renderProducts.length / postsPerPage); i++) {
-        pageNumbers.push(i)
+  const renderPageNumbers = pageNumbers.map((number) => {
+    if (number < maxpageNumberLimit + 1 && number > minpageNumberLimit) {
+      return (
+        <li
+          key={number}
+          id={number}
+          onClick={handeclick}
+          className={currentPage == number ? "active" : null}
+        >
+          {number}
+        </li>
+      );
     }
-    const handeclick = (event)=> {
-        setCurrentPage(Number(event.target.id));
-      }
+  });
 
-    const renderPageNumbers = pageNumbers.map(number => {
-      if(number < maxpageNumberLimit+1 && number > minpageNumberLimit){
-        return (
-        <li key={number} id={number}
-            onClick={handeclick}
-            className={currentPage == number ? "active" :null}
-            >
-            {number}
-          </li>
-        )
-      }
-    })
+  const handleNextbtn = () => {
+    setCurrentPage(currentPage + 1);
 
-    const handleNextbtn  = ()=> {
-      setCurrentPage(currentPage +1)
-
-      if(currentPage+1> maxpageNumberLimit){
-        setmaxpageNumberLimit(maxpageNumberLimit + pageNumberLimit)
-        setminpageNumberLimit(minpageNumberLimit + pageNumberLimit)
-      }
+    if (currentPage + 1 > maxpageNumberLimit) {
+      setmaxpageNumberLimit(maxpageNumberLimit + pageNumberLimit);
+      setminpageNumberLimit(minpageNumberLimit + pageNumberLimit);
     }
+  };
 
-    const handlePrevbtn  = ()=> {
-      setCurrentPage(currentPage -1)
+  const handlePrevbtn = () => {
+    setCurrentPage(currentPage - 1);
 
-      if((currentPage-1)% pageNumberLimit==0){
-        setmaxpageNumberLimit(maxpageNumberLimit - pageNumberLimit)
-        setminpageNumberLimit(minpageNumberLimit - pageNumberLimit)
-      }
+    if ((currentPage - 1) % pageNumberLimit == 0) {
+      setmaxpageNumberLimit(maxpageNumberLimit - pageNumberLimit);
+      setminpageNumberLimit(minpageNumberLimit - pageNumberLimit);
     }
+  };
 
-    let pageIncrementBtn = null;
-    if(pageNumbers.length > maxpageNumberLimit) {
-      pageIncrementBtn = <li onClick={handleNextbtn}> &hellip;</li>
+  let pageIncrementBtn = null;
+  if (pageNumbers.length > maxpageNumberLimit) {
+    pageIncrementBtn = <li onClick={handleNextbtn}> &hellip;</li>;
+  }
+
+  let pageDrecrementBtn = null;
+  if (minpageNumberLimit >= 1) {
+    pageDrecrementBtn = <li onClick={handlePrevbtn}> &hellip;</li>;
+  }
+
+  const [searchtext, setSearchtext] = useState("");
+
+  const handleChangeSearch = (e) => {
+    var datos = JSON.parse(localStorage.getItem("datos"));
+    setRenderProducts(datos);
+
+    let searchVal = e.target.value;
+    let suggestion = [];
+    if (searchVal.length > 0) {
+      suggestion = datos.filter((e) =>
+        e.DESCRIPCION.toLowerCase().includes(searchVal.toLowerCase())
+      );
+      // setResfound(suggestion.length !== 0 ? true : false);
     }
-
-    let pageDrecrementBtn = null;
-    if(minpageNumberLimit>=1) {
-      pageDrecrementBtn = <li onClick={handlePrevbtn}> &hellip;</li>
-    }
-
-
-    const [searchtext, setSearchtext] = useState("");
-
-
-    const handleChangeSearch = (e)=>{
-      var datos = JSON.parse(localStorage.getItem("datos"));
-      setRenderProducts(datos)
-
-      let searchVal = e.target.value
-      let suggestion = [];
-      if (searchVal.length > 0) {
-        suggestion = datos.filter((e) => e.DESCRIPCION.toLowerCase().includes(searchVal.toLowerCase()));
-        // setResfound(suggestion.length !== 0 ? true : false);
-      }
-      if(suggestion.length > 0){
-        setTimeout(() => {
-        setRenderProducts(suggestion)
+    if (suggestion.length > 0) {
+      setTimeout(() => {
+        setRenderProducts(suggestion);
       }, 500);
-      }
-    
-      // setRenderProducts(rangePrice);
-
     }
+
+    // setRenderProducts(rangePrice);
+  };
 
   return (
     <div className="ProductsList row  col-sm-12  col-xl-9 mx-auto mt-5 mb-5 p-0">
@@ -277,7 +267,7 @@ function ProductslList({ infoBanner }) {
           <div className="SearchProduct ">
             <Paper style={{ backgroundColor: "#ECECEC" }}>
               <InputBase
-              onChange={handleChangeSearch}
+                onChange={handleChangeSearch}
                 placeholder="Buscar"
                 style={{ paddingLeft: "1.5rem", width: "80%" }}
               />
@@ -293,49 +283,48 @@ function ProductslList({ infoBanner }) {
           <div className="FilterProductBox ">
             <div className="CategoriesProducts">
               <h3>Categorias</h3>
-              <div className="Categories">
-                {listCategoriesRender}
-              </div>
+              <div className="Categories">{listCategoriesRender}</div>
             </div>
-            {auth.tokenAuth ?
-                        <div className="PriceRange">
-                        <h3>Rango de precios</h3>
-                        <Slider
-                          style={{ width: "90%" }}
-                          value={value}
-                          onChange={handleChange}
-                          valueLabelDisplay="auto"
-                          aria-labelledby="range-slider"
-                          min={minValue}
-                          step={1}
-                          max={maxValue}
-                        />
-                        <p>
-                          Rango: {value[0]}$ - {value[1]}${" "}
-                        </p>
-                      </div>: null
-          
-            }
-            {offerProducts[randomNumber].ID_CODBAR ? (
-              <Link 
-              to={`/compraproducto/${offerProducts[randomNumber].ID_ITEM}`} style={{textDecoration:"none"}}
-              onClick={()=>{dispatch(getProductBuyAction(offerProducts[randomNumber]))}}
-          >
-              <div className="OffersProducts">
-                <h3>Ofertas</h3>
-                <img
-                  src={`img/${offerProducts[randomNumber].ID_CODBAR}.jpg`}
-                  alt="img"
-                  style={{ width: "100%" }}
+            {auth.tokenAuth ? (
+              <div className="PriceRange">
+                <h3>Rango de precios</h3>
+                <Slider
+                  style={{ width: "90%" }}
+                  value={value}
+                  onChange={handleChange}
+                  valueLabelDisplay="auto"
+                  aria-labelledby="range-slider"
+                  min={minValue}
+                  step={1}
+                  max={maxValue}
                 />
-                    <h2>{offerProducts[randomNumber].DESCRIPCION}</h2>
-                    {auth.tokenAuth ?
-                      <p style={{ color: "green" }}>
-                      {formatNumber(offerProducts[randomNumber].PRECIO_MIN_1)}
-                    </p> :null
-                    }
-              
+                <p>
+                  Rango: {value[0]}$ - {value[1]}${" "}
+                </p>
               </div>
+            ) : null}
+            {offerProducts[randomNumber].ID_CODBAR ? (
+              <Link
+                to={`/compraproducto/${offerProducts[randomNumber].ID_ITEM}`}
+                style={{ textDecoration: "none" }}
+                onClick={() => {
+                  dispatch(getProductBuyAction(offerProducts[randomNumber]));
+                }}
+              >
+                <div className="OffersProducts">
+                  <h3>Ofertas</h3>
+                  <img
+                    src={`img/${offerProducts[randomNumber].ID_CODBAR}.jpg`}
+                    alt="img"
+                    style={{ width: "100%" }}
+                  />
+                  <h2>{offerProducts[randomNumber].DESCRIPCION}</h2>
+                  {auth.tokenAuth ? (
+                    <p style={{ color: "green" }}>
+                      {formatNumber(offerProducts[randomNumber].PRECIO_MIN_1)}
+                    </p>
+                  ) : null}
+                </div>
               </Link>
             ) : (
               <div className="OffersProducts">
@@ -429,18 +418,34 @@ function ProductslList({ infoBanner }) {
           </div>
           <div className="ListRenderProduct">{listRenderLaboratorie}</div>
           <div className="RenderPageNumbersProducts">
-                <ul className="pageNumbersProducts" style={{color:"black"}}>
-                  <li>
-                    <button className="buttonsProducts" onClick={handlePrevbtn} disabled={currentPage == pageNumbers[0]? true:false}>Ant</button>
-                  </li>
-                    {pageDrecrementBtn}
-                    {renderPageNumbers}
-                    {pageIncrementBtn}
-                  <li>
-                    <button className="buttonsProducts" onClick={handleNextbtn} disabled={currentPage == pageNumbers[pageNumbers.length - 1]? true:false}>Sigu</button>
-                  </li>
-                </ul>
-            </div>
+            <ul className="pageNumbersProducts" style={{ color: "black" }}>
+              <li>
+                <button
+                  className="buttonsProducts"
+                  onClick={handlePrevbtn}
+                  disabled={currentPage == pageNumbers[0] ? true : false}
+                >
+                  Ant
+                </button>
+              </li>
+              {pageDrecrementBtn}
+              {renderPageNumbers}
+              {pageIncrementBtn}
+              <li>
+                <button
+                  className="buttonsProducts"
+                  onClick={handleNextbtn}
+                  disabled={
+                    currentPage == pageNumbers[pageNumbers.length - 1]
+                      ? true
+                      : false
+                  }
+                >
+                  Sigu
+                </button>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
