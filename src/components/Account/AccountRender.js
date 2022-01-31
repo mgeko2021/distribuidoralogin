@@ -9,8 +9,6 @@ import { useDispatch, useSelector } from "react-redux";
 const AccountRender = () => {
     const [favoritesProducts, setFavoritesProducts] = useState([])
 
-
-
     // const item = useSelector((store)=>store.favoritesProducts)
     useEffect(()=>{
         

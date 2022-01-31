@@ -40,7 +40,7 @@ export const getProductFavorite =(itemName) => (dispatch, getState) =>{  //todo 
         payload: itemName
     })
 }
-export const getCountDeleteProductBuyAction =(arraynew) => (dispatch, getState) =>{  //todo esto es action
+export const getCountDeleteFavoriteAction =(arraynew) => (dispatch, getState) =>{  //todo esto es action
 // primer arrw recibimos prametros para enviar a esta funcion algunas si otras no
 //dispatch:activar el reducer
 // obtener la data del estate
