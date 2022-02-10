@@ -1,0 +1,66 @@
+.FavoriteProduct {
+    border-bottom: 0.1rem solid rgb(212, 210, 210);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.ImgFavoriteCrud {
+    width: 38%;
+}
+
+.ImgFavoriteCrud img{
+    max-height:60%; 
+    max-width:60%;
+}
+.DescriptionFavoriteCrud {
+    width: 28%;
+    font-size: 1rem;
+    text-align: left;
+} 
+
+.DescriptionFavoriteCrud h5{
+    font-size: 1rem;
+    margin: 0;
+}
+
+.DescriptionFavoriteCrud h4{
+    color: rgb(182, 22, 17);
+    text-align: left;
+    font-size: 1rem;
+    margin: 0;
+}
+.DescriptionFavoriteCrud p{
+    margin: 0;
+} 
+
+.DescriptionFavoriteCrud button{
+    margin-top: 1rem;
+    font-size: 0.6rem;
+    text-align: left;
+} 
+
+.PriceFavorite {
+    width: 30%;
+
+}
+
+.PriceFavorite{
+    color: gray;
+    font-size: 0.7rem;
+    line-height: 0.8rem;
+
+}
+
+.PriceFavorite svg{
+    cursor: pointer;
+}
+
+.PriceFavorite h4{
+    font-size: 1.2rem;
+}
+
+

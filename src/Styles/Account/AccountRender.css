@@ -20,3 +20,23 @@
     padding-bottom: 0.5rem;
     font-size: 1.3rem;
 }
+
+.ListRenderProduct__titule{
+    background-color: rgb(54, 168, 255);
+    border-radius: 0.2rem;
+}
+
+.ListRenderProduct__titule{
+    color: white;
+    margin-bottom: 1.5rem;
+    width: 100%;
+    padding: 0.4rem 1rem;
+    text-align: left;
+    display: flex;
+    align-items: center;
+}
+
+.ListRenderProduct__titule h3{
+    color: white;
+    font-size: 1.2rem;
+}
