@@ -29,8 +29,6 @@ export const getProductFavorite =(itemName) => (dispatch, getState) =>{  //todo 
 // primer arrw recibimos prametros para enviar a esta funcion algunas si otras no
 //dispatch:activar el reducer
 // obtener la data del estate
-    console.log(getState(), "hola")
-    console.log(itemName)
 
 // const deleteCountItem = counItem.filter(counItem=> {return counItem.ID_CODBAR != id})
 // dispatch(getCountProductBuyAction(id))

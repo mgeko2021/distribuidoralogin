@@ -18,8 +18,7 @@
     background-color: white;
     border-bottom: 0.3rem solid rgb(0, 198, 248);
     padding: 1rem;
-    cursor: pointer;
-    border-radius: 0.3rem;
+   border-radius: 0.3rem;
 
 }
 
@@ -27,16 +26,14 @@
     background-color: white;
     border-bottom: 0.3rem solid rgb(0, 198, 248);
     padding: 1.8rem;
-    cursor: pointer;
-    border-radius: 0.3rem;
+   border-radius: 0.3rem;
 }
 
 .ServicesImg3{
     background-color: white;
     border-bottom: 0.3rem solid rgb(0, 198, 248);
     padding: 1rem;
-    cursor: pointer;
-    border-radius: 0.3rem;
+   border-radius: 0.3rem;
     margin:auto 1rem auto 1rem;
 }
 
@@ -44,25 +41,8 @@
     background-color: white;
     border-bottom: 0.3rem solid rgb(0, 198, 248);
     padding: 1rem;
-    cursor: pointer;
-    border-radius: 0.3rem;
+   border-radius: 0.3rem;
     margin:auto 1rem auto 1rem;
 
 }
 
-.ServicesImg1:hover{
-    border-bottom: none;
-    transition: 2s;
-}
-.ServicesImg2:hover{
-    border-bottom: none;
-    transition: 2s;
-}
-.ServicesImg3:hover{
-    border-bottom: none;
-    transition: 2s;
-}
-.ServicesImg4:hover{
-    border-bottom: none;
-    transition: 2s;
-}

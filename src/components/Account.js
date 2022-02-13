@@ -4,6 +4,7 @@ import Information from "./HomePage/Information";
 import NavigationBar from "./HomePage/NavigationBar";
 import img from "./bg-main.jpg";
 import AccountRender from "./Account/AccountRender";
+import Footer from "./Footer";
 
 const Account = () => {
   return (
@@ -20,6 +21,7 @@ const Account = () => {
         </div>
       </div>
       <AccountRender />
+      <Footer/>
     </div>
   );
 };

@@ -10,10 +10,12 @@ import { getCountProductBuyAction } from '../../../../redux/itemsCarDucks';
 import { useForm } from "react-hook-form";
 import { getProductFavorite, getCountDeleteFavoriteAction } from '../../../../redux/itemFavoriteDucks';
 import { useEffect } from 'react';
+import Swal from "sweetalert2";
+
 
 
 const DescriptionProduct = () => {
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit, reset } = useForm();
     const [redHearthLike, setRedHearthLike] = useState()
 
     const itemFavorite = useSelector(store => store.favoritesProducts)
@@ -72,7 +74,58 @@ const DescriptionProduct = () => {
             valor_total: item.PRECIO_MIN_1 * data.AMOUNT
 
         }
-        dispatch(getCountProductBuyAction(productProperties))
+
+        const productPropertiesLocal = {
+            item_id: itemLocal.ID_ITEM,
+            item_ext: itemLocal.ID_CODBAR,
+            item_nombre: itemLocal.DESCRIPCION,
+            item_referencia: itemLocal.ID_REFERENCIA,
+            cantidad: data.AMOUNT,
+            valor_unitario: itemLocal.PRECIO_MIN_1,
+            porc_dcto: itemLocal.PORC_DES1,
+            valor_dcto: "0",
+            porc_dcto_extra: "0",
+            valor_dcto_extra: "0",
+            subtotal: itemLocal.PRECIO_MIN_1 * data.AMOUNT,
+            valor_total: itemLocal.PRECIO_MIN_1 * data.AMOUNT
+
+        }
+        if (item.length != 0) {
+            if (data.AMOUNT <= Math.ceil(item.CAN_EXIS_INI)) {
+                console.log(data.AMOUNT);
+                console.log(Math.ceil(item.CAN_EXIS_INI));
+                
+                dispatch(getCountProductBuyAction(productProperties))    
+            } else{
+                Swal.fire({
+                    title: "No hay suficientes existencias ",
+                    icon: "warning",
+                    text: `Contamos con ${Math.ceil(item.CAN_EXIS_INI)} existencias de este producto`,
+                    confirmButtonText: "Aceptar",
+                  });
+                  reset()
+            } 
+   
+            // item.CAN_EXIS_FIN) 
+        } else{
+            if (data.AMOUNT <= Math.ceil(itemLocal.CAN_EXIS_INI)) {
+                console.log(data.AMOUNT);
+                console.log(Math.ceil(itemLocal.CAN_EXIS_INI));
+
+                dispatch(getCountProductBuyAction(productPropertiesLocal))    
+            } else{
+                Swal.fire({
+                    title: "No hay suficientes existencias ",
+                    icon: "warning",
+                    text: `Contamos con ${Math.ceil(itemLocal.CAN_EXIS_INI)} existencias de este producto`,
+                    confirmButtonText: "Aceptar",
+                  });
+                  reset()
+            } 
+            
+            // itemLocal.CAN_EXIS_FIN
+        }
+     
     };
 
     const onFavorite = (event) => {
@@ -113,7 +166,7 @@ const DescriptionProduct = () => {
 
             <div className="InfoBuyProduct row  col-sm-12 p-0">
                 <div className="ImgBuyProduct col-10  col-sm-5 mx-auto">
-                    {item.ID_CODBAR ? <img className="mx-auto p-0" src={`img/${item.ID_CODBAR}.jpg`} alt="img"></img> : <img className="mx-auto p-0" src={"img/036600813719.jpg"} alt="404"></img>}
+                    {item.ID_CODBAR ? <img className="mx-auto p-0" src={`img/${item.ID_CODBAR}.jpg`} alt="img"></img> : <img className="mx-auto p-0" src={`img/${itemLocal.ID_CODBAR}.jpg`} alt="404"></img>}
                 </div>
                 <div className="PicreAndDescription col-10  col-sm-7 mx-auto">
                     <p>{item.length != 0 ? item.CMLINEAS_DESCRIPCION : itemLocal.CMLINEAS_DESCRIPCION}</p>
@@ -139,7 +192,7 @@ const DescriptionProduct = () => {
                         <div className="Amount">
                             <label >Cantidad <TextField
                                 id="outlined-number"
-                                label="Number"
+                                label="Numero"
                                 type="number"
                                 InputLabelProps={{
                                     shrink: true,
@@ -152,16 +205,16 @@ const DescriptionProduct = () => {
                             />
                             </label>
                         </div>
-                        <div className="AddToCar">
+                        <div className="AddToCar row col-12">
                             <Button
                                 // disabled={!addCar}
                                 // onClick={()=>{
                                 //     // dispatch(getCountProductBuyAction(item.length != 0? item:itemLocal))
                                 // }}
-                                type="number" className="Buy" variant="contained" size="medium" color="primary" startIcon={<ShoppingCartIcon />}
+                                type="number" className="Buy col-9 col-sm-6 col-md-8" variant="contained" size="medium" color="primary" startIcon={<ShoppingCartIcon />}
                             >Añadir al carrito</Button>
                             <Button
-                                className="Like" style={{ backgroundColor: `${redHearthLike}` }} onClick={
+                                className="Like col-9 col-sm-2" style={{ backgroundColor: `${redHearthLike}` }} onClick={
                                     (event) => {
                                         console.log("hola")
                                         onFavorite(event)
@@ -176,9 +229,8 @@ const DescriptionProduct = () => {
                         </div>
                     </form>
                     <div className="RedInfo">
-                        <p> Ref:        {item.length != 0 ? item.ID_REFERENCIA : itemLocal.ID_REFERENCIA}</p>
-                        <p> Categoria:  Antiesaminico (Fijo)  </p>
-                        <p> Etiqietas:  Medicameneto Pastilla (Fijo)</p>
+                        <p> <b>Ref:</b> {item.length != 0 ? item.ID_REFERENCIA : itemLocal.ID_REFERENCIA}</p>
+                        <p> <b>Categoria:</b> Antiesaminico (Fijo)  </p>
                     </div>
                 </div>
             </div>
