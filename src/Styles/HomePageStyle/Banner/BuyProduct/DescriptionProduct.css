@@ -26,7 +26,6 @@
 }
 
 .ImgBuyProduct {
-    width: 80%;
     background-color: rgb(211, 211, 211);
     display: flex;
 }
@@ -36,7 +35,6 @@
 }
 
 .PicreAndDescription{
-    width: 100%;
     background-color: rgb(252, 250, 244);
     padding-top:5vh;
     padding-bottom:7vh;

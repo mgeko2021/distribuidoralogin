@@ -27,11 +27,7 @@
     font-size: 1.3rem;
 }
 
-.DescriptionBuy {
-    width: 52%;
-}
 .ProductsInfoBuy {
-    width: 46%;
     max-height: 100%;
 }
 .ProductsInfoBuy .EmptyCar {
@@ -128,7 +124,14 @@
 .Pay {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
+
+@media (max-width: 360px) {
+    .Pay {
+        justify-content: center;
+    }
+  }
 .PayProducts .PSE {
     display: flex;
     flex-direction: column;
