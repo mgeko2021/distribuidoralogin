@@ -39,6 +39,9 @@ import LaboratoryRender from "./ProductsList/LaboratoryRender";
 import useAuth from "../../Auth/useAuth";
 import { Link } from "react-router-dom";
 import { getProductBuyAction } from "../../redux/itemBuyDucks";
+import data from "../../data/items.json"
+import { getProductsAction } from "../../redux/negociemosDucks";
+
 // import CategoriesRender from "./ProductsList/categoriesRender";
 
 function ProductslList({ infoBanner }) {
@@ -67,13 +70,15 @@ function ProductslList({ infoBanner }) {
   const [offerProducts, setOfferProducts] = useState(
     useSelector((store) => store.dataProducts.array)
   );
+  const [is576px, set576px] = useState(false)
+
 
   const auth = useAuth();
   const dispatch = useDispatch();
 
   // let renderProducts = useSelector((store) => store.dataProducts.array);
 
-  useEffect(() => {
+  let funcionRender = () => {
     const randomNumberConst = Math.floor(
       Math.random() * (renderProducts.length - 1)
     );
@@ -113,7 +118,36 @@ function ProductslList({ infoBanner }) {
     if (uniqueLaboratory.length > 0) {
       setLaboratory(uniqueLaboratory);
     }
+
+  }
+
+  useEffect(() => {
+
+    const dataNoObs = data.filter(data=> {return data.PRECIO_MIN_1 != 1 && data.PRECIO_MIN_1 != null && !isNaN(data.PRECIO_MIN_1)})
+    dispatch(getProductsAction(dataNoObs)) 
+    if(renderProducts.length > 0){
+      funcionRender()
+    }
+
   }, []);
+
+  
+
+  useEffect(()=> {
+  console.log(window.screen.width)
+     
+      if(window.screen.width <577  ){
+        setPageNumberLimit(4)
+        setmaxpageNumberLimit(4)
+        set576px(true)
+        setPostsPerPage(6);
+        setGrid(75);
+
+      }
+  },[])
+
+
+  
 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
@@ -262,6 +296,7 @@ function ProductslList({ infoBanner }) {
 
   return (
     <div className="ProductsList row  col-sm-12  col-xl-9 mx-auto mt-5 mb-5 p-0">
+      {renderProducts.length > 0 ?(
       <div className="ProductListFlex d-lg-flex col-12 col-sm-11 col-md-11  col-xl-12  mx-auto p-0">
         <div className="FilterProduct col-12 col-sm-9 col-md-9 col-lg-4 mx-auto p-0'">
           <div className="SearchProduct ">
@@ -360,21 +395,28 @@ function ProductslList({ infoBanner }) {
                 style={{ color: "#36a8ff" }}
                 onClick={() => {
                   setPostsPerPage(6);
-                  setGrid(100 / 3);
+                  if(!is576px){
+                    setGrid(100 / 3) 
+                  }
                 }}
               />
               <AppsIcon
                 style={{ color: "#36a8ff" }}
                 onClick={() => {
                   setPostsPerPage(9);
-                  setGrid(100 / 3);
+                  if(!is576px){
+                    setGrid(100 / 3) 
+                  }
                 }}
               />
               <ViewComfyIcon
                 style={{ color: "#36a8ff" }}
                 onClick={() => {
                   setPostsPerPage(12);
-                  setGrid(100 / 4);
+                  if(!is576px){
+                    setGrid(100 / 4);
+                  }
+                 
                 }}
               />
             </div>
@@ -448,6 +490,7 @@ function ProductslList({ infoBanner }) {
           </div>
         </div>
       </div>
+      ): null}
     </div>
   );
 }

@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../Styles/Products.css";
 import Footer from "./Footer";
 import Information from "./HomePage/Information";
 import NavigationBar from "./HomePage/NavigationBar";
 import img from "./bg-main.jpg";
 import ProductslList from "./Products/ProductslList";
+
 
 function Products() {
   return (

@@ -69,14 +69,21 @@ const NavigationBar = () => {
             <NavLink to="/" activeClassName="selectedLink">
               Inicio
             </NavLink>
-            <NavLink to="/" activeClassName="selectedLink">
+            <NavLink to="/productos" activeClassName="selectedLink">
               Productos
             </NavLink>
             <NavLink to="/nosotros" activeClassName="selectedLink">
               Nosotros
             </NavLink>
-            <Link to="/" activeClassName="selectedLink">
-              Contacto
+            <Link style={{cursor:"pointer"}}
+              activeClass="active"
+              to="ContacId"
+              spy={true}
+              smooth={true}
+              offset={-70}
+              duration={500}
+            >
+            Contacto
             </Link>
             {/* <div className="Loginbtn col-md-4 ">
                             <Button className="Loginbtn" onClick={()=>setButtonPopUp(true)} variant="contained" color="secondary">

@@ -12,7 +12,8 @@ const Banner = () => {
     useEffect(()=> {
         const dataNoObs = data.filter(data=> {return data.PRECIO_MIN_1 != 1 && data.PRECIO_MIN_1 != null && !isNaN(data.PRECIO_MIN_1)})
         dispatch(getProductsAction(dataNoObs)) 
-    },[])
+        localStorage.setItem('allitems', JSON.stringify(dataNoObs))
+    },[data])
 
     const infoBanner = useSelector(store=> store.dataProducts.array)
 

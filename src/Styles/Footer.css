@@ -137,7 +137,7 @@
 .NavLinksFooter {
     display: flex;
     justify-content: space-evenly;
-    
+    flex-wrap: wrap;
 }
 
 .NavLinksFooter a{
@@ -148,6 +148,16 @@
 }
 
 .NavLinksFooter a:hover{
-    color: gray;
+    color: rgb(184, 184, 184);
+    transition: 0.3s;
+}
+
+.NavLinksFooter a:hover{
+    color: rgb(184, 184, 184);
+    transition: 0.3s;
+}
+
+.politics a:hover{
+    color: rgb(184, 184, 184);
     transition: 0.3s;
 }

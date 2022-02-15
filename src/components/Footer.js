@@ -48,7 +48,7 @@ const Footer = () => {
             <NavLink to="/" activeClassName="selectedLink">
               Inicio
             </NavLink>
-            <NavLink to="/" activeClassName="selectedLink">
+            <NavLink to="/productos" activeClassName="selectedLink">
               Productos
             </NavLink>
             <NavLink to="/nosotros" activeClassName="selectedLink">
@@ -76,7 +76,7 @@ const Footer = () => {
               @ 2021 Distribuidora Negociemos. Todos los derechos reservados.
             </p>
           </div> 
-          <div className="col-md-11 col-lg-8 col-xl-7 d-flex justify-content-end">
+          <div className="politics col-md-11 col-lg-8 col-xl-7 ">
             <a href="">| Políticas y téminos de uso</a>
             <a href="">| Políticas de tratmiento de datos</a>
             <a href="">| Garantias y devoluciones</a>
