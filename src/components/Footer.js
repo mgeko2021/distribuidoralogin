@@ -10,7 +10,7 @@ import { NavLink } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer id="ContacId" className="Footer row col-12 p-0">
+    <footer id="ContacId" className="Footer row col-12 p-0 m-0">
       <div className="FooterUp">
         <div className=" row col-11 col-lg-10 col-xl-8 mx-auto p-0">
           <div className="FooterLogo col-12 col-lg-2 col-xl-3 p-0 d-flex justify-content-center ">

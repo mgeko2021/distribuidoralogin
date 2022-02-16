@@ -205,7 +205,7 @@ const DescriptionProduct = () => {
                             />
                             </label>
                         </div>
-                        <div className="AddToCar row col-12">
+                        <div className="AddToCar row col-12 mx-auto">
                             <Button
                                 // disabled={!addCar}
                                 // onClick={()=>{

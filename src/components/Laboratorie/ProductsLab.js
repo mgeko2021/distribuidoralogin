@@ -6,7 +6,7 @@ import useAuth from '../../Auth/useAuth';
 
 
 
-const ProductsLab = ({laboratorie}) => {
+const ProductsLab = ({laboratorie, imageWidth}) => {
     const dispatch = useDispatch()
     const auth = useAuth() 
     const location = useLocation()
@@ -14,7 +14,7 @@ const ProductsLab = ({laboratorie}) => {
     console.log(laboratorie)
 
     return ( 
-        <div className="ProductsLab mx-auto mb-2" style={{width:`25%`}}>
+        <div className="ProductsLab mx-auto mb-2" style={{width:`${imageWidth}%`}}>
             {/* {laboratorie.ID_CODBAR? <img src={`img/${laboratorie.ID_CODBAR}.jpg`} alt="img"></img>:<img src={`404.png`} alt="404"></img>} */}
             {auth.tokenAuth?
             <Link 

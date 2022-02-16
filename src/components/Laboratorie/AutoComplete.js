@@ -10,6 +10,7 @@ const Autocomplete = ({ laboratorie }) => {
   const [searchtext, setSearchtext] = useState("");
   const [suggest, setSuggest] = useState([]);
   const [resfound, setResfound] = useState(true);
+  const [hiddeSearch, setHiddeSearch] = useState(true);
 
   const array = laboratorie.map(laboratorie => laboratorie.DESCRIPCION)
   const num = Math.floor(Math.random()*(laboratorie.length))
@@ -20,6 +21,11 @@ const Autocomplete = ({ laboratorie }) => {
 
   const handleChange = (e) => {
     let searchval = e.target.value;
+    if(searchval.length == 0){
+      setHiddeSearch(true)
+    } else {
+      setHiddeSearch(false)
+    }
     let suggestion = [];
     if (searchval.length > 0) {
       suggestion = array.sort().filter((e) => e.toLowerCase().includes(searchval.toLowerCase()));
@@ -55,7 +61,7 @@ const Autocomplete = ({ laboratorie }) => {
     );
   };
   return (
-    <div className="AutoComplete col-10 col-sm-3 col-xl-2 mx-auto">
+    <div className="AutoComplete row col-11 col-sm-7 col-md-4 col-lg-3  mx-auto">
       <div className="searchcontainer">
         <input
           type="text"
@@ -64,11 +70,11 @@ const Autocomplete = ({ laboratorie }) => {
           value={searchtext}
           onChange={handleChange}/>
       </div>
-      <div className="Results">
+      <div className="Results p-0">
         {getSuggestions()}
       </div>
       <div className="RenderProduct">
-      {auth.tokenAuth?          
+      {auth.tokenAuth?        
         <Link 
           to={`/compraproducto/${laboratorie.ID_ITEM}`} style={{textDecoration:"none"}}
           onClick={()=>{dispatch(getProductBuyAction(renderfilter[0]))}}
@@ -78,9 +84,8 @@ const Autocomplete = ({ laboratorie }) => {
             <img src={`img/${renderfilter[0].ID_CODBAR}.jpg`} alt="img"></img>
             <h6>{renderfilter[0].DESCRIPCION}</h6>
           </div>:
-           <img src={"search.png"} alt="img" style={{width:"100%"}}></img>
+           null
           }
-
         </Link>:
           <Link 
          to={`${location.pathname}`} style={{textDecoration:"none"}}
@@ -91,10 +96,10 @@ const Autocomplete = ({ laboratorie }) => {
             <img src={`img/${renderfilter[0].ID_CODBAR}.jpg`} alt="img"></img>
             <h6>{renderfilter[0].DESCRIPCION}</h6>
           </div>:
-          <img src={"search.png"} alt="img" style={{width:"100%"}}></img>
+          null
           }
-        </Link>
-      }
+        </Link>}
+        {hiddeSearch? <img src={"search.png"} alt="img" style={{width:"100%"}}></img>: null}
       </div>
     </div>
   );

@@ -351,7 +351,6 @@ function ProductslList({ infoBanner }) {
                   <img
                     src={`img/${offerProducts[randomNumber].ID_CODBAR}.jpg`}
                     alt="img"
-                    style={{ width: "100%" }}
                   />
                   <h2>{offerProducts[randomNumber].DESCRIPCION}</h2>
                   {auth.tokenAuth ? (
@@ -388,11 +387,10 @@ function ProductslList({ infoBanner }) {
             </div>
           </div>
         </div>
-        <div className="ProductsRenderList col-11 col-sm-9 col-md-8 col-lg-8 p-0 mx-auto mt-0 ">
+        <div className="ProductsRenderList col-11 col-sm-10 col-lg-8 p-0 mx-auto">
           <div className="ProductsGrid">
             <div className="IconsProductsGrid">
               <ViewModuleIcon
-                style={{ color: "#36a8ff" }}
                 onClick={() => {
                   setPostsPerPage(6);
                   if(!is576px){
@@ -401,7 +399,6 @@ function ProductslList({ infoBanner }) {
                 }}
               />
               <AppsIcon
-                style={{ color: "#36a8ff" }}
                 onClick={() => {
                   setPostsPerPage(9);
                   if(!is576px){
@@ -410,7 +407,6 @@ function ProductslList({ infoBanner }) {
                 }}
               />
               <ViewComfyIcon
-                style={{ color: "#36a8ff" }}
                 onClick={() => {
                   setPostsPerPage(12);
                   if(!is576px){
@@ -460,7 +456,7 @@ function ProductslList({ infoBanner }) {
           </div>
           <div className="ListRenderProduct">{listRenderLaboratorie}</div>
           <div className="RenderPageNumbersProducts">
-            <ul className="pageNumbersProducts" style={{ color: "black" }}>
+            <ul className="pageNumbersProducts p-0" style={{ color: "black" }}>
               <li>
                 <button
                   className="buttonsProducts"
