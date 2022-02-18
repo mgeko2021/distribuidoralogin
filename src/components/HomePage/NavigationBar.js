@@ -9,12 +9,18 @@ import useAuth from "../../Auth/useAuth";
 import Button from "@material-ui/core/Button";
 import PopUp from "./Information/PopUp";
 import TextField from "@material-ui/core/TextField";
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import { Link } from "react-scroll";
 
 import { StylesProvider } from "@material-ui/core";
 import { useEffect } from "react";
+import { useForm } from "react-hook-form";
+import mailLogin from "../../services/mailLogin";
 
 const NavigationBar = () => {
+  const [buttonPopUp, setButtonPopUp] = useState(false);
+  const [dataForm, setDataForm] = useState();
+  const { register, handleSubmit, reset } = useForm();
   const counItem = useSelector((store) => store.countBuyProduct);
 
   const auth = useAuth();
@@ -35,6 +41,69 @@ const NavigationBar = () => {
   // width:1200%;
   // }
   const [isMObile, setIsMobile] = useState(false);
+
+  const handleLogin = (data) => {
+    setDataForm(data);
+    reset();
+  };
+
+  useEffect(() => {
+    if (dataForm) {
+      const postFunc = async () => {
+        // const token = await postToken()
+        //     if(token.status == "200"){
+        //         const postEmailFunc = async () => {
+        //         const dataUser = await postEmail(token.data.token)
+        //         if(dataUser.status == "200"){
+        //             for (let i = 0; i < dataUser.data.length; i++) {
+        //                 console.log(dataUser.data[i].EMAIL)
+        //                 if (dataUser.data[i].EMAIL == dataForm.username) {
+        const data = {
+          // to: dataForm.username,
+          to: "mcamacho@gekoestudio.com",
+          // token: token.data.token
+          token:
+            "Bearer 1//049GqkZCJDZgECgYIARAAGAQSNwF-L9IrXuXALibPF_aZKt0FA9wtz74LgcDFvQ-_N_rNMwNyq48Byw6yw6QGf4IvhaOAr7gQcYs",
+        };
+        const postLoginFunc = async () => {
+          const tokenLogin = await mailLogin(data);
+
+          console.log(tokenLogin);
+        };
+        postLoginFunc();
+
+        // setButtonPopUp(false)
+        // auth.upToken(token.data.token || localStorage.getItem("token"))
+        //         }
+        //     }
+        // }
+
+        // setButtonPopUp(false)
+        // auth.upToken(token.data.token || localStorage.getItem("token"))
+        // }
+        // postEmailFunc()
+        // }
+      };
+      postFunc();
+    }
+  }, [dataForm]);
+
+  //   useEffect(()=> {
+  //     if(dataForm){
+  //         if(dataForm.username == "distribuidora@negociemos.com"){
+  //             const postFunc = async () => {
+  //             const datauser = await postToken(dataForm)
+  //                 if(datauser){
+  //                 //   auth.login(datauser.name);
+  //                     // console.log(datauser.data.token)
+  //                     setButtonPopUp(false)
+  //                     auth.upToken(datauser.data.token || localStorage.getItem("token"))
+  //                 }
+  //             }
+  //                 postFunc()
+  //         }
+  //     }
+  //   },[dataForm])
 
   return (
     <div className="NavigationBar row col-md-11 col-lg-10 col-xl-8 mx-auto p-0">
@@ -75,7 +144,14 @@ const NavigationBar = () => {
             <NavLink to="/nosotros" activeClassName="selectedLink">
               Nosotros
             </NavLink>
-            <Link style={{cursor:"pointer"}}
+            {auth.tokenAuth ? (
+          <NavLink  to="/compras">
+            <ShoppingCartIcon className="Car"></ShoppingCartIcon> 
+             Carrito
+          </NavLink>
+            ) : null
+            }
+            <Link style={{cursor:"pointer" }}
               activeClass="active"
               to="ContacId"
               spy={true}
@@ -85,29 +161,45 @@ const NavigationBar = () => {
             >
             Contacto
             </Link>
-            {/* <div className="Loginbtn col-md-4 ">
-                            <Button className="Loginbtn" onClick={()=>setButtonPopUp(true)} variant="contained" color="secondary">
-                                Inciar Sesion
-                            </Button>
-                            <PopUp trigger={buttonPopUp} setTrigger={setButtonPopUp}>
-                                <div className="popup-text"> 
-                                    <h2>Acceso a Clientes</h2>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia non sit eveniet molestiae tenetur quam facilis quibusdam distinctio. Numquam dolorum placeat rem saepe commodi alias. Nihil labore incidunt impedit iste?</p>
-                                    <h5>Correo Electronico</h5>
-                                    <div className="popup-send">
-                                        <TextField
-                                        required
-                                        id="outlined-required"
-                                        label="correo"
-                                        variant="outlined"
-                                        />
-                                        <Button className="Loginbtn" onClick={()=>setButtonPopUp(true)} variant="contained" color="secondary">
-                                            Inciar Sesion
-                                        </Button>
-                                    </div>
-                                </div>
-                            </PopUp>
-                        </div> */}
+      
+            <div className="LoginbtnMobil col-md-4 ">
+            {auth.tokenAuth? 
+               <NavLink to="/cuenta" style={{textDecoration:"none"}}> 
+               <Button
+                   className="Loginbtn"
+                   variant="contained"
+                   color="secondary"
+                   style={{ backgroundColor:"rgb(0, 65, 176)",color:"white"}}
+                 >
+                   <AccountCircleIcon />
+                   Cuenta
+                 </Button>
+                 </NavLink>:
+                <Button className="Loginbtn" onClick={()=>setButtonPopUp(true)} 
+                style={{ backgroundColor:"rgb(0, 65, 176)",color:"white"}} 
+                variant="contained">
+                    Incio Cuenta
+                </Button>}
+
+                <PopUp trigger={buttonPopUp} setTrigger={setButtonPopUp}>
+                    <div className="popup-text"> 
+                        <h2>Acceso a Clientes</h2>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia non sit eveniet molestiae tenetur quam facilis quibusdam distinctio. Numquam dolorum placeat rem saepe commodi alias. Nihil labore incidunt impedit iste?</p>
+                        <h5>Correo Electronico</h5>
+                        <form onSubmit={handleSubmit(handleLogin)}>
+                        <div className="popup-send">
+                            <TextField
+                            {...register("username", { required: true })}
+                            id="outlined-required"
+                            label="correo"
+                            variant="outlined"
+                            />
+                          <button> <span>Iniciar Sesion</span> </button>
+                      </div>
+                      </form>
+                    </div>
+                </PopUp>
+            </div>
           </div>
         ) : null}
         {auth.tokenAuth ? (

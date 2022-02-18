@@ -57,11 +57,86 @@
 .popup-send button{
     background-color: rgba(53, 134, 209, 0.719);
     color: rgb(253, 253, 253);
-    width: 50%;
+    width: 60%;
     margin: 1rem auto;
     font-size: 1.2rem;
 }
 
 .popup-send button:hover{
     background-color: rgb(235, 49, 25);
+}
+
+@media (max-width:770px) {
+    .popup-inner {
+        position: relative;
+        padding: 2rem;
+        width: 90%;
+        max-width: 90%;
+        background-color: white;
+        border-radius: 0.3rem;
+    }
+    .popup-text p{
+        color: black;
+        font-size: 1rem;
+        line-height: 1rem;
+    }
+    .popup-inner .close-btn {
+        position: absolute;
+        top: 0px;
+        right: 10px;
+        border: none;
+    }
+    .close-btn svg{
+        width: 2rem!important;
+        height: 20%!important;
+    }
+
+  
+    .popup-send button {
+        width: 65%;
+        font-size: 1rem;
+        border: none;
+        background-color: rgba(255, 255, 255, 0);
+        margin: 0.2rem auto;
+    }
+  
+    .popup-send button:hover {
+        background-color: rgba(255, 255, 255, 0);
+    }
+  
+    .popup-send span  {
+        margin-top: -2rem;
+        background-color: rgba(53, 134, 209, 0.719);
+        padding: 0.7rem 1.5rem;
+        font-size: 1rem;
+        border-radius: 1rem;
+    }
+    .popup-send span:hover  {
+        background-color: rgb(0, 65, 176);
+    }
+    .popup-send {
+        width: 65%;
+        margin: auto;
+    }
+}
+
+@media (max-width:550px) {
+    .popup-inner {
+        padding: 1rem;
+        width: 100%!important;
+        max-width: 95%;
+    }
+    .popup-send {
+        width: 100%!important;
+    }
+    .popup-send button {
+        width: 100%;
+    
+    }
+    .popup-text h2 {
+        width: 90%;
+        margin: auto;
+        margin-bottom: 1rem;
+    }
+ 
 }
