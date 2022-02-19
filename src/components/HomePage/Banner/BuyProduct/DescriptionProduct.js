@@ -17,6 +17,8 @@ import Swal from "sweetalert2";
 const DescriptionProduct = () => {
     const { register, handleSubmit, reset } = useForm();
     const [redHearthLike, setRedHearthLike] = useState()
+    const[favoriteItemLocal , setFavoriteItemLocal] = useState([])
+
 
     const itemFavorite = useSelector(store => store.favoritesProducts)
     const counItem = useSelector(store => store.countBuyProduct)
@@ -35,6 +37,7 @@ const DescriptionProduct = () => {
             setRedHearthLike("red")
         } else {
             setRedHearthLike("gray")
+
         }
 
 
@@ -94,16 +97,32 @@ const DescriptionProduct = () => {
             if (data.AMOUNT <= Math.ceil(item.CAN_EXIS_INI)) {
                 console.log(data.AMOUNT);
                 console.log(Math.ceil(item.CAN_EXIS_INI));
-                
+                Swal.fire({
+                    title: "Haz agregado el producto a tu carrito ",
+                    icon: "success",
+                    text: `Ahora tienes ${Math.ceil(data.AMOUNT)} unidades de ${item.DESCRIPCION}`,
+                    confirmButtonText: "Aceptar"
+                  });
+                reset()
                 dispatch(getCountProductBuyAction(productProperties))    
             } else{
-                Swal.fire({
-                    title: "No hay suficientes existencias ",
-                    icon: "warning",
-                    text: `Contamos con ${Math.ceil(item.CAN_EXIS_INI)} existencias de este producto`,
-                    confirmButtonText: "Aceptar",
-                  });
-                  reset()
+                if(isNaN(item.CAN_EXIS_INI)){
+                    Swal.fire({
+                        title: "No hay suficientes existencias ",
+                        icon: "warning",
+                        text: `No Contamos con existencias de este producto`,
+                        confirmButtonText: "Aceptar",
+                      });
+                      reset()
+                } else {
+                    Swal.fire({
+                        title: "No hay suficientes existencias ",
+                        icon: "warning",
+                        text: `Contamos con ${Math.ceil(item.CAN_EXIS_INI)} existencias de este producto`,
+                        confirmButtonText: "Aceptar",
+                    });
+                    reset()
+                }
             } 
    
             // item.CAN_EXIS_FIN) 
@@ -128,7 +147,7 @@ const DescriptionProduct = () => {
      
     };
 
-    const onFavorite = (event) => {
+    const onFavorite = (event, id) => {
         if (event.currentTarget.style.backgroundColor == "gray") {
             event.currentTarget.style.backgroundColor = "red"
 
@@ -146,13 +165,20 @@ const DescriptionProduct = () => {
             event.currentTarget.style.backgroundColor = "gray"
             const deleteFavoriteItem = itemFavorite.filter(itemFavorite => { return itemFavorite.item_id != item.ID_ITEM })
             dispatch(getCountDeleteFavoriteAction(deleteFavoriteItem))
+
+            if(localStorage.getItem('favoritesProducts')){
+                console.log(id);
+                let favoritesProductsParse = JSON.parse(localStorage.getItem('favoritesProducts'))
+                const deleteFavoriteItem = favoritesProductsParse.filter((favoriteItem) => {return favoriteItem.item_ext != id});
+                localStorage.setItem('favoritesProducts', JSON.stringify(deleteFavoriteItem))
+                dispatch(getCountDeleteFavoriteAction(deleteFavoriteItem))
+                setFavoriteItemLocal(deleteFavoriteItem)
+              }
         }
 
 
 
     };
-
-
 
     function formatNumber(number) {
         return new Intl.NumberFormat("ES-MX", {
@@ -216,10 +242,8 @@ const DescriptionProduct = () => {
                             <Button
                                 className="Like col-9 col-sm-2" style={{ backgroundColor: `${redHearthLike}` }} onClick={
                                     (event) => {
-                                        console.log("hola")
-                                        onFavorite(event)
-
-
+                                        console.log(item)
+                                        onFavorite(event,itemLocal.ID_CODBAR)
                                     }}
                                 variant="contained"
                                 color="default"

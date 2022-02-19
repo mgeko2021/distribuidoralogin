@@ -31,7 +31,9 @@ const Information = () => {
   useEffect(() => {
     if (dataForm) {
       const postFunc = async () => {
-        // const token = await postToken()
+        const token = await postToken()
+        console.log(token);
+        
         //     if(token.status == "200"){
         //         const postEmailFunc = async () => {
         //         const dataUser = await postEmail(token.data.token)
@@ -46,12 +48,12 @@ const Information = () => {
           token:
             "Bearer 1//049GqkZCJDZgECgYIARAAGAQSNwF-L9IrXuXALibPF_aZKt0FA9wtz74LgcDFvQ-_N_rNMwNyq48Byw6yw6QGf4IvhaOAr7gQcYs",
         };
-        const postLoginFunc = async () => {
-          const tokenLogin = await mailLogin(data);
+        // const postLoginFunc = async () => {
+        //   const tokenLogin = await mailLogin(data);
 
-          console.log(tokenLogin);
-        };
-        postLoginFunc();
+        //   console.log(tokenLogin);
+        // };
+        // postLoginFunc();
 
         // setButtonPopUp(false)
         // auth.upToken(token.data.token || localStorage.getItem("token"))

@@ -16,6 +16,7 @@ import { StylesProvider } from "@material-ui/core";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import mailLogin from "../../services/mailLogin";
+import postToken from "../../services/postToken";
 
 const NavigationBar = () => {
   const [buttonPopUp, setButtonPopUp] = useState(false);
@@ -50,7 +51,9 @@ const NavigationBar = () => {
   useEffect(() => {
     if (dataForm) {
       const postFunc = async () => {
-        // const token = await postToken()
+        const token = await postToken()
+        console.log(token);
+        
         //     if(token.status == "200"){
         //         const postEmailFunc = async () => {
         //         const dataUser = await postEmail(token.data.token)
@@ -65,12 +68,12 @@ const NavigationBar = () => {
           token:
             "Bearer 1//049GqkZCJDZgECgYIARAAGAQSNwF-L9IrXuXALibPF_aZKt0FA9wtz74LgcDFvQ-_N_rNMwNyq48Byw6yw6QGf4IvhaOAr7gQcYs",
         };
-        const postLoginFunc = async () => {
-          const tokenLogin = await mailLogin(data);
+        // const postLoginFunc = async () => {
+        //   const tokenLogin = await mailLogin(data);
 
-          console.log(tokenLogin);
-        };
-        postLoginFunc();
+        //   console.log(tokenLogin);
+        // };
+        // postLoginFunc();
 
         // setButtonPopUp(false)
         // auth.upToken(token.data.token || localStorage.getItem("token"))
@@ -135,23 +138,23 @@ const NavigationBar = () => {
 
         {isMObile ? (
           <div className="mobileLinks col-12 col-sm-12 col-md-7 p-0">
-            <NavLink to="/" activeClassName="selectedLink">
+            <NavLink to="/" activeClassName="selectedLink" onClick={()=>setIsMobile(false)} >
               Inicio
             </NavLink>
-            <NavLink to="/productos" activeClassName="selectedLink">
+            <NavLink to="/productos" activeClassName="selectedLink" onClick={()=>setIsMobile(false)}>
               Productos
             </NavLink>
-            <NavLink to="/nosotros" activeClassName="selectedLink">
+            <NavLink to="/nosotros" activeClassName="selectedLink" onClick={()=>setIsMobile(false)}>
               Nosotros
             </NavLink>
             {auth.tokenAuth ? (
-          <NavLink  to="/compras">
+          <NavLink  to="/compras" onClick={()=>setIsMobile(false)}>
             <ShoppingCartIcon className="Car"></ShoppingCartIcon> 
              Carrito
           </NavLink>
             ) : null
             }
-            <Link style={{cursor:"pointer" }}
+            <Link style={{cursor:"pointer" }} onClick={()=>setIsMobile(false)}
               activeClass="active"
               to="ContacId"
               spy={true}
@@ -164,7 +167,7 @@ const NavigationBar = () => {
       
             <div className="LoginbtnMobil col-md-4 ">
             {auth.tokenAuth? 
-               <NavLink to="/cuenta" style={{textDecoration:"none"}}> 
+               <NavLink to="/cuenta" style={{textDecoration:"none"}} onClick={()=>setIsMobile(false)}> 
                <Button
                    className="Loginbtn"
                    variant="contained"
@@ -175,7 +178,9 @@ const NavigationBar = () => {
                    Cuenta
                  </Button>
                  </NavLink>:
-                <Button className="Loginbtn" onClick={()=>setButtonPopUp(true)} 
+                <Button className="Loginbtn" onClick={()=>{
+                  setButtonPopUp(true)
+                  }} 
                 style={{ backgroundColor:"rgb(0, 65, 176)",color:"white"}} 
                 variant="contained">
                     Incio Cuenta

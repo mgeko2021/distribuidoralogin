@@ -8,6 +8,11 @@
   margin: 0;
 }
 
+.MuiButton-startIcon {
+  display: inherit!important; 
+  margin-left: 0px!important;
+  margin-right: 0px!important;
+}
 
 
 
