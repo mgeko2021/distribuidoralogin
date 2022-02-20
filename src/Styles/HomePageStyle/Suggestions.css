@@ -17,3 +17,25 @@
     font-weight: 700;
 
 }
+
+.SuggestionsMobile{
+    overflow: hidden;
+}
+
+.Slideshow{
+    overflow: hidden!important;
+}
+
+.SlideRender img{
+    width: auto!important;
+    margin-bottom: 1.5rem;
+}
+
+.fjYXtl {
+    position: relative;
+    overflow: hidden;
+}
+
+.sc-jrAFXE p{
+    margin-bottom: 0;
+}
