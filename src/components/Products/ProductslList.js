@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import "../../Styles/Products/ProductsList.css";
 import Checkbox from "@material-ui/core/Checkbox";
 import Select from "@material-ui/core/Select";
@@ -53,10 +53,12 @@ function ProductslList({ infoBanner }) {
   const [minValue, setMinValue] = useState(0);
   const [grid, setGrid] = useState(100 / 4);
   const [categoriesRender, setCategoriesRender] = useState([]);
-  const [laboratory, setLaboratory] = useState([]);
+  let [laboratory, setLaboratory] = useState([]);
   const [order, setOrder] = useState(false);
   const [randomNumber, setRandomNumber] = useState(0);
   const [flag, setFlag] = useState(false);
+
+  const laboratoriRef = useRef(0);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(12);
@@ -87,10 +89,16 @@ function ProductslList({ infoBanner }) {
     const categories = [];
     const laboratory = [];
     if (renderProducts.length > 0) {
+      // ID_CRICLA1
+      
       for (let i = 0; i < renderProducts.length; i++) {
         if (renderProducts[i].CMLINEAS_DESCRIPCION) {
           categories.push(renderProducts[i].CMLINEAS_DESCRIPCION.toUpperCase());
-          laboratory.push(renderProducts[i].CMCRICLA_DESCRIPCION.toUpperCase());
+          let laboratoryObject ={
+            CMCRICLA_DESCRIPCION:`${renderProducts[i].CMCRICLA_DESCRIPCION}`,
+            ID_CRICLA1:`${renderProducts[i].ID_CRICLA1},${renderProducts[i].CMCRICLA_DESCRIPCION}`,
+          }
+          laboratory.push(laboratoryObject);
         }
       }
     }
@@ -109,14 +117,18 @@ function ProductslList({ infoBanner }) {
       return categories.indexOf(valor) === indice;
     });
 
-    const uniqueLaboratory = laboratory.filter((valor, indice) => {
-      return laboratory.indexOf(valor) === indice;
+      var hash2 = {};
+      const laboratory2 = laboratory.filter(function(current) {
+      var exists2 = !hash2[current.CMCRICLA_DESCRIPCION];
+      hash2[current.CMCRICLA_DESCRIPCION] = true;
+      return exists2;
     });
+
     if (unique.length > 0) {
       setCategoriesRender(unique);
     }
-    if (uniqueLaboratory.length > 0) {
-      setLaboratory(uniqueLaboratory);
+    if (laboratory2.length > 0) {
+      setLaboratory(laboratory2);
     }
 
   }
@@ -134,7 +146,6 @@ function ProductslList({ infoBanner }) {
   
 
   useEffect(()=> {
-  console.log(window.screen.width)
      
       if(window.screen.width <577  ){
         setPageNumberLimit(4)
@@ -146,16 +157,19 @@ function ProductslList({ infoBanner }) {
       }
   },[])
 
+  // CMCRICLA_DESCRIPCION:`${renderProducts[i].CMCRICLA_DESCRIPCION}`,
+  // ID_CRICLA1:`${renderProducts[i].ID_CRICLA1}`,
 
   
 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = renderProducts.slice(indexOfFirstPost, indexOfLastPost);
-  console.log(laboratory);
   const listLaboratoryRender = laboratory.map((laboratory, index) => (
-    <LaboratoryRender key={index} laboratory={laboratory} />
+    <LaboratoryRender key={index} laboratory={laboratory.CMCRICLA_DESCRIPCION} laboratoryValue={laboratory.ID_CRICLA1} />
   ));
+
+  laboratoriRef.current = listLaboratoryRender
   const listCategoriesRender = categoriesRender.map((categoria, index) => (
     <CategoriesRender key={index} categoria={categoria} />
   ));
@@ -167,22 +181,40 @@ function ProductslList({ infoBanner }) {
     var datos = JSON.parse(localStorage.getItem("datos"));
     setRenderProducts(datos);
     setValue(newValue);
-    const rangePrice = renderProducts.filter((price) => {
+    const rangePrice = datos.filter((price) => {
       if (price.PRECIO_MIN_1) {
         return price.PRECIO_MIN_1 >= value[0] && price.PRECIO_MIN_1 <= value[1];
       }
     });
 
-    console.log(datos);
-    console.log(rangePrice);
 
     setTimeout(() => {
       setRenderProducts(rangePrice);
     }, 500);
   };
+  
 
-  const handleChangeSelct = () => {
-    // setValue(newValue);
+  const handleChangeSelct = (e) => {
+    console.log(e.target.value);
+    
+    let laboratoryFilter = e.target.value
+    var datos2 = JSON.parse(localStorage.getItem("datos"));
+    setRenderProducts(datos2);
+    if(laboratoryFilter == "TODOS"){
+      return
+    }
+  
+    const laboratoryFilterValue = datos2.filter((item) => {
+      if (item.CMCRICLA_DESCRIPCION && laboratoryFilter != null) {
+        return item.CMCRICLA_DESCRIPCION == laboratoryFilter
+      }
+    });
+
+    console.log(laboratoryFilterValue);
+    
+    if(laboratoryFilterValue.length > 0){
+        setRenderProducts(laboratoryFilterValue);
+    }
   };
 
   const sortNumbersLower = () => {
@@ -294,6 +326,11 @@ function ProductslList({ infoBanner }) {
     // setRenderProducts(rangePrice);
   };
 
+  const onSubmit = dataBuy => {
+    console.log();
+    
+  } 
+
   return (
     <div className="ProductsList row  col-sm-12  col-xl-9 mx-auto mt-5 mb-5 p-0">
       {renderProducts.length > 0 ?(
@@ -315,77 +352,79 @@ function ProductslList({ infoBanner }) {
               </IconButton>
             </Paper>
           </div>
-          <div className="FilterProductBox ">
-            <div className="CategoriesProducts">
-              <h3>Categorias</h3>
-              <div className="Categories">{listCategoriesRender}</div>
-            </div>
-            {auth.tokenAuth ? (
-              <div className="PriceRange">
-                <h3>Rango de precios</h3>
-                <Slider
-                  style={{ width: "90%" }}
-                  value={value}
-                  onChange={handleChange}
-                  valueLabelDisplay="auto"
-                  aria-labelledby="range-slider"
-                  min={minValue}
-                  step={1}
-                  max={maxValue}
-                />
-                <p>
-                  Rango: {value[0]}$ - {value[1]}${" "}
-                </p>
+          {/* <form onSubmit={handleSubmit(onSubmit)}> */}
+            <div className="FilterProductBox ">
+              <div className="CategoriesProducts">
+                <h3>Categorias</h3>
+                <div className="Categories" >{listCategoriesRender}</div>
               </div>
-            ) : null}
-            {offerProducts[randomNumber].ID_CODBAR ? (
-              <Link
-                to={`/compraproducto/${offerProducts[randomNumber].ID_ITEM}`}
-                style={{ textDecoration: "none" }}
-                onClick={() => {
-                  dispatch(getProductBuyAction(offerProducts[randomNumber]));
-                }}
-              >
-                <div className="OffersProducts">
-                  <h3>Ofertas</h3>
-                  <img
-                    src={`img/${offerProducts[randomNumber].ID_CODBAR}.jpg`}
-                    alt="img"
+              {auth.tokenAuth ? (
+                <div className="PriceRange">
+                  <h3>Rango de precios</h3>
+                  <Slider
+                    style={{ width: "90%" }}
+                    value={value}
+                    onChange={handleChange}
+                    valueLabelDisplay="auto"
+                    aria-labelledby="range-slider"
+                    min={minValue}
+                    step={1}
+                    max={maxValue}
                   />
-                  <h2>{offerProducts[randomNumber].DESCRIPCION}</h2>
-                  {auth.tokenAuth ? (
-                    <p style={{ color: "green" }}>
-                      {formatNumber(offerProducts[randomNumber].PRECIO_MIN_1)}
-                    </p>
-                  ) : null}
+                  <p>
+                    Rango: {value[0]}$ - {value[1]}${" "}
+                  </p>
                 </div>
-              </Link>
-            ) : (
-              <div className="OffersProducts">
-                <h3>Ofertas</h3>
-              </div>
-            )}
-            <div>
-              <h3>Filtrar por tipo de laboratorios</h3>
-              <FormControl variant="filled" style={{ width: "100%" }}>
-                <InputLabel htmlFor="filled-age-native-simple">
-                  Laboratorio
-                </InputLabel>
-                <Select
-                  native
-                  value={null}
-                  onChange={handleChangeSelct}
-                  inputProps={{
-                    name: "Laboratorio",
-                    id: "filled-age-native-simple",
+              ) : null}
+              {offerProducts[randomNumber].ID_CODBAR ? (
+                <Link
+                  to={`/compraproducto/${offerProducts[randomNumber].ID_ITEM}`}
+                  style={{ textDecoration: "none" }}
+                  onClick={() => {
+                    dispatch(getProductBuyAction(offerProducts[randomNumber]));
                   }}
                 >
-                  <option aria-label="None" value="" />
-                  {listLaboratoryRender}
-                </Select>
-              </FormControl>
+                  <div className="OffersProducts">
+                    <h3>Ofertas</h3>
+                    <img
+                      src={`img/${offerProducts[randomNumber].ID_CODBAR}.jpg`}
+                      alt="img"
+                    />
+                    <h2>{offerProducts[randomNumber].DESCRIPCION}</h2>
+                    {auth.tokenAuth ? (
+                      <p style={{ color: "green" }}>
+                        {formatNumber(offerProducts[randomNumber].PRECIO_MIN_1)}
+                      </p>
+                    ) : null}
+                  </div>
+                </Link>
+              ) : (
+                <div className="OffersProducts">
+                  <h3>Ofertas</h3>
+                </div>
+              )}
+              <div>
+                <h3>Filtrar por tipo de laboratorios</h3>
+                <FormControl variant="filled" style={{ width: "100%" }}>
+                  <InputLabel htmlFor="filled-age-native-simple">
+                    Laboratorio
+                  </InputLabel>
+                  <Select
+                    native
+                    value={null}
+                    onChange={handleChangeSelct}
+                    inputProps={{
+                      name: "Laboratorio",
+                      id: "filled-age-native-simple",
+                    }}
+                  >
+                    <option aria-label="None" value="TODOS">VER TODOS</option>
+                    {laboratoriRef.current}
+                  </Select>
+                </FormControl>
+              </div>
             </div>
-          </div>
+          {/* </form> */}
         </div>
         <div className="ProductsRenderList col-11 col-sm-10 col-lg-8 p-0 mx-auto">
           <div className="ProductsGrid">
@@ -418,7 +457,7 @@ function ProductslList({ infoBanner }) {
             </div>
             <div className="CountProductsGrid">
               <p className="m-0">
-                Encontrado {renderProducts.length ? renderProducts.length : 0}{" "}
+                Encontrado  <span style={{color:"blue", fontWeight:"700"}}>{renderProducts.length ? renderProducts.length : 0}{" "}</span> 
                 productos
               </p>
             </div>
@@ -439,7 +478,7 @@ function ProductslList({ infoBanner }) {
                         sortNumbersUpper();
                       }}
                     >
-                      Mayor a menor
+                      Mayor a menor Precio
                     </button>
                     <button
                       onClick={() => {
@@ -447,7 +486,7 @@ function ProductslList({ infoBanner }) {
                         sortNumbersLower();
                       }}
                     >
-                      Menor a mayor
+                      Menor a mayor Precio
                     </button>{" "}
                   </div>
                 ) : null}

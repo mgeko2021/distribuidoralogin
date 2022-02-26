@@ -1,6 +1,6 @@
 import React from 'react';
 
-const LaboratoryRender = ({laboratory}) => {
+const LaboratoryRender = ({laboratory, laboratoryValue}) => {
     return (
         <option value={laboratory}>{laboratory}</option>
     );

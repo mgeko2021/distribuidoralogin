@@ -27,10 +27,7 @@ const FavoriteProduct = ({ itemFavorite }) => {
       currency: "COP",
     }).format(number);
   }
-
-  console.log(itemFavorite);
   
-
   return (
     <div className="FavoriteProduct row col-11  mx-auto p-0 pb-1">
       <div className="ImgFavoriteCrud col-12 col-lg-5 mx-auto p-0 pb-2">
