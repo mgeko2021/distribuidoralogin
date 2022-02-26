@@ -1,48 +1,41 @@
-.Services {
-    background-color: rgba(153, 235, 255, 0.445);
-    color:black;
-    display: flex;
-    align-content: center;
-    justify-content: center;
-    margin-bottom: 3rem;
-    padding: 2rem 0;
-}
-
-.ServicesImg {
-    margin: auto;
-    display: flex;
-    justify-content: center;
-}
-
-.ServicesImg1{
-    background-color: white;
-    border-bottom: 0.3rem solid rgb(0, 198, 248);
-    padding: 1rem;
-   border-radius: 0.3rem;
-
-}
-
-.ServicesImg2{
-    background-color: white;
-    border-bottom: 0.3rem solid rgb(0, 198, 248);
-    padding: 1.8rem;
-   border-radius: 0.3rem;
-}
 
 .ServicesImg3{
-    background-color: white;
-    border-bottom: 0.3rem solid rgb(0, 198, 248);
-    padding: 1rem;
-   border-radius: 0.3rem;
-    margin:auto 1rem auto 1rem;
+    background-color: white!important;
+    border-bottom: 0.3rem solid rgb(0, 198, 248)!important;
+    padding: 1rem!important;
+   border-radius: 0.3rem!important;
+    margin:auto 1rem auto 1rem!important;
 }
 
 .ServicesImg4{
-    background-color: white;
-    border-bottom: 0.3rem solid rgb(0, 198, 248);
-    padding: 1rem;
-   border-radius: 0.3rem;
-    margin:auto 1rem auto 1rem;
+    background-color: white!important;
+    border-bottom: 0.3rem solid rgb(0, 198, 248)!important;
+    padding: 1rem!important;
+   border-radius: 0.3rem!important;
+    margin:auto 1rem auto 1rem!important;
 
 }
 
+.Services {
+    background-color: rgba(153, 235, 255, 0.445)!important;
+    color:black!important;
+    display: flex!important;
+    align-content: center!important;
+    justify-content: center!important;
+    margin-bottom: 3rem!important;
+    padding: 2rem 0!important;
+}
+
+.ServicesImg {
+    margin: auto!important;
+    display: flex!important;
+    justify-content: center!important;
+    align-items: center!important;
+}
+
+
+@media(max-width:550px){
+    .ServicesImg3{
+        margin-bottom: 1rem!important;
+    }
+}
