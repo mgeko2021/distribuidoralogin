@@ -10,13 +10,21 @@ import { useForm } from "react-hook-form";
 
 
 
-const CategoriesRender = ({categoria}) => {
+
+
+const CategoriesRender = ({categoria, setRenderProducts, renderProducts}) => {
+
   const { register, handleSubmit, reset } = useForm();
 
+
+
     return (
-        <FormControlLabel control={<Checkbox name="checkedB" color="primary" value={categoria}/>}
+      <FormControlLabel 
+        control={<Radio 
+        name="checkedB" 
+        color="primary" 
+        value={categoria}/>}
         label={categoria}
-        {...register("forma_pago_id")}
       />
     );
 };

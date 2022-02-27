@@ -171,7 +171,7 @@ function ProductslList({ infoBanner }) {
 
   laboratoriRef.current = listLaboratoryRender
   const listCategoriesRender = categoriesRender.map((categoria, index) => (
-    <CategoriesRender key={index} categoria={categoria} />
+    <CategoriesRender key={index} categoria={categoria} setRenderProducts={setRenderProducts} renderProducts={renderProducts}  />
   ));
   const listRenderLaboratorie = currentPosts.map((products, index) => (
     <ProductListRender key={index} products={products} grid={grid} />
@@ -331,6 +331,28 @@ function ProductslList({ infoBanner }) {
     
   } 
 
+  const ChangeCheckBox = (e) => {
+        
+    let categorieFilter = e.target.value
+
+    var datos3 = JSON.parse(localStorage.getItem("datos"));
+    setRenderProducts(datos3);
+    if(categorieFilter == "TODOS"){
+      return
+    }
+    const categorieFilterValue = datos3.filter((item) => {
+      if (item.CMLINEAS_DESCRIPCION && categorieFilter != null) {
+        return item.CMLINEAS_DESCRIPCION == categorieFilter
+      }
+    });
+    console.log(categorieFilterValue);
+    
+    if (categorieFilterValue.length > 0) {
+      setRenderProducts(categorieFilterValue)
+    }
+    
+  }
+
   return (
     <div className="ProductsList row  col-sm-12  col-xl-9 mx-auto mt-5 mb-5 p-0">
       {renderProducts.length > 0 ?(
@@ -356,7 +378,26 @@ function ProductslList({ infoBanner }) {
             <div className="FilterProductBox ">
               <div className="CategoriesProducts">
                 <h3>Categorias</h3>
-                <div className="Categories" >{listCategoriesRender}</div>
+                <div className="Categories" >
+                {/* <FormControlLabel control={<Checkbox name="checkedB" color="primary" value={"Todos"}/>}
+                 label={"TODOS"}
+                  onChange={()=> {}} 
+                 /> */}
+                  <RadioGroup 
+                    aria-label="gender"
+                    name="gender1" 
+                    defaultValue="TODOS"
+                    onChange={ChangeCheckBox}>
+                    <FormControlLabel 
+                      control={<Radio 
+                      name="checkedB" 
+                      color="primary" 
+                      value={"TODOS"}/>}
+                      label={"TODOS"}
+                    />
+                    {listCategoriesRender}
+                  </RadioGroup>
+                  </div>
               </div>
               {auth.tokenAuth ? (
                 <div className="PriceRange">
@@ -418,7 +459,7 @@ function ProductslList({ infoBanner }) {
                       id: "filled-age-native-simple",
                     }}
                   >
-                    <option aria-label="None" value="TODOS">VER TODOS</option>
+                    <option aria-label="None" value="TODOS">TODOS</option>
                     {laboratoriRef.current}
                   </Select>
                 </FormControl>
