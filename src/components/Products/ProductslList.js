@@ -57,6 +57,7 @@ function ProductslList({ infoBanner }) {
   const [order, setOrder] = useState(false);
   const [randomNumber, setRandomNumber] = useState(0);
   const [flag, setFlag] = useState(false);
+  const [changeCategorire, setChangeCategorie] = useState(false)
 
   const laboratoriRef = useRef(0);
 
@@ -86,6 +87,7 @@ function ProductslList({ infoBanner }) {
     );
     setRandomNumber(randomNumberConst);
     localStorage.setItem("datos", JSON.stringify(renderProducts));
+    localStorage.setItem("select", JSON.stringify(renderProducts));
     const categories = [];
     const laboratory = [];
     if (renderProducts.length > 0) {
@@ -103,15 +105,7 @@ function ProductslList({ infoBanner }) {
       }
     }
 
-    var maxAndMin = renderProducts.slice(0);
-    maxAndMin.sort(function (a, b) {
-      return a.PRECIO_MIN_1 - b.PRECIO_MIN_1;
-    });
-    const maximoValor = Number(maxAndMin[maxAndMin.length - 1].PRECIO_MIN_1);
-    const minimoValor = Number(maxAndMin[0].PRECIO_MIN_1);
-    setMaxValue(maximoValor);
-    setMinValue(minimoValor);
-    setValue([minimoValor, maximoValor]);
+
 
     const unique = categories.filter((valor, indice) => {
       return categories.indexOf(valor) === indice;
@@ -132,6 +126,26 @@ function ProductslList({ infoBanner }) {
     }
 
   }
+
+
+
+
+  useEffect(() => {
+    if (renderProducts.length > 0) {
+    setChangeCategorie(false)
+    var maxAndMin = renderProducts.slice(0);
+    maxAndMin.sort(function (a, b) {
+      return a.PRECIO_MIN_1 - b.PRECIO_MIN_1;
+    });
+    const maximoValor = Number(maxAndMin[maxAndMin.length - 1].PRECIO_MIN_1);
+    const minimoValor = Number(maxAndMin[0].PRECIO_MIN_1);
+    setMaxValue(maximoValor);
+    setMinValue(minimoValor);
+    setValue([minimoValor, maximoValor]);
+    }
+
+
+  }, [changeCategorire]);
 
   useEffect(() => {
 
@@ -178,29 +192,32 @@ function ProductslList({ infoBanner }) {
   ));
 
   const handleChange = (event, newValue) => {
-    var datos = JSON.parse(localStorage.getItem("datos"));
-    setRenderProducts(datos);
+
+    var select = JSON.parse(localStorage.getItem("select"));
+    setRenderProducts(select);
     setValue(newValue);
-    const rangePrice = datos.filter((price) => {
+    const rangePrice = select.filter((price) => {
       if (price.PRECIO_MIN_1) {
         return price.PRECIO_MIN_1 >= value[0] && price.PRECIO_MIN_1 <= value[1];
       }
     });
-
-
-    setTimeout(() => {
+    if(rangePrice.length > 0){
       setRenderProducts(rangePrice);
-    }, 500);
+    }
+    
   };
   
 
   const handleChangeSelct = (e) => {
+    
     console.log(e.target.value);
     
     let laboratoryFilter = e.target.value
     var datos2 = JSON.parse(localStorage.getItem("datos"));
     setRenderProducts(datos2);
     if(laboratoryFilter == "TODOS"){
+      setChangeCategorie(true)
+      localStorage.setItem("select", JSON.stringify(datos2));
       return
     }
   
@@ -214,8 +231,36 @@ function ProductslList({ infoBanner }) {
     
     if(laboratoryFilterValue.length > 0){
         setRenderProducts(laboratoryFilterValue);
+        setChangeCategorie(true)
+        localStorage.setItem("select", JSON.stringify(laboratoryFilterValue));
     }
   };
+
+  const ChangeCheckBox = (e) => {
+        
+    let categorieFilter = e.target.value
+
+    var datos3 = JSON.parse(localStorage.getItem("datos"));
+    setRenderProducts(datos3);
+    if(categorieFilter == "TODOS"){
+      setChangeCategorie(true)
+      localStorage.setItem("select", JSON.stringify(datos3));
+      return
+    }
+    const categorieFilterValue = datos3.filter((item) => {
+      if (item.CMLINEAS_DESCRIPCION && categorieFilter != null) {
+        return item.CMLINEAS_DESCRIPCION == categorieFilter
+      }
+    });
+    console.log(categorieFilterValue);
+    
+    if (categorieFilterValue.length > 0) {
+      setRenderProducts(categorieFilterValue)
+      setChangeCategorie(true)
+      localStorage.setItem("select", JSON.stringify(categorieFilterValue));
+    }
+    
+  }
 
   const sortNumbersLower = () => {
     var byLowerPrice = renderProducts.slice(0);
@@ -331,27 +376,7 @@ function ProductslList({ infoBanner }) {
     
   } 
 
-  const ChangeCheckBox = (e) => {
-        
-    let categorieFilter = e.target.value
 
-    var datos3 = JSON.parse(localStorage.getItem("datos"));
-    setRenderProducts(datos3);
-    if(categorieFilter == "TODOS"){
-      return
-    }
-    const categorieFilterValue = datos3.filter((item) => {
-      if (item.CMLINEAS_DESCRIPCION && categorieFilter != null) {
-        return item.CMLINEAS_DESCRIPCION == categorieFilter
-      }
-    });
-    console.log(categorieFilterValue);
-    
-    if (categorieFilterValue.length > 0) {
-      setRenderProducts(categorieFilterValue)
-    }
-    
-  }
 
   return (
     <div className="ProductsList row  col-sm-12  col-xl-9 mx-auto mt-5 mb-5 p-0">
