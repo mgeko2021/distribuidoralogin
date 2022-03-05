@@ -84,9 +84,9 @@ const App = () => {
 		<div className="Laboratories row col-11 col-sm-10 col-md-11 col-lg-11 col-xl-10 mx-auto  p-0">
 			<Titulo>LABORATORIOS</Titulo>
 			{ismas992px? 
-			<Slideshow controles={true} autoplay={true} velocidad="1500">
+			<Slideshow  controles={true} autoplay={true} velocidad="1500">
 				<Slide>
-					<div>
+					<div className='lefts'>
 						<Link onClick={()=> dispatch(getLaboratorieAction(AG))} to="/laboratorio/AG" style={{textDecoration:"none"}}>
 							<img src={img1} alt="AMERCAN GENERICS"/>
 						</Link>
@@ -126,7 +126,7 @@ const App = () => {
 							<img src={img10} alt="Genfar"/>
 							</Link>
 					</div>
-					<div>
+					<div >
 						<Link onClick={()=> dispatch(getLaboratorieAction(JGB))} to="/laboratorio/JGB" style={{textDecoration:"none"}}>
 							<img src={img11} alt="JGB"/>
 							</Link>

@@ -15,8 +15,8 @@ const SueggestionRenderDesktop = ({productSugesstions}) => {
                     to={`/compraproducto/${productSugesstions.ID_ITEM}`} style={{textDecoration:"none"}}
                     onClick={()=>{dispatch(getProductBuyAction(productSugesstions))}}
                     >
-                    {productSugesstions.ID_CODBAR?<img src={`img/${productSugesstions.ID_CODBAR}.jpg`}  alt="img"></img>:
-                    <img src={`404.png`} style={{width:`95%`}} alt="img"></img>}
+                    <img src={`img/${productSugesstions.ID_CODBAR}.jpg`}  alt="img"/>
+                    <h5>{productSugesstions.DESCRIPCION}</h5>
                 </Link>:
                     <div>
                         {productSugesstions.ID_CODBAR?<img src={`img/${productSugesstions.ID_CODBAR}.jpg`}  alt="img"></img>:

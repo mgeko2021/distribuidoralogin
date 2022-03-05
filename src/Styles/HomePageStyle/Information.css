@@ -47,6 +47,7 @@
 .Track{
     display: flex;
     align-items: center;
+    border-left: none!important;
 }
 .PBX{
     display: flex;

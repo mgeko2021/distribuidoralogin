@@ -1,6 +1,5 @@
 
 .Banner {
-    background-color: rgba(219, 219, 219, 0.26);
     color:black;
     margin:auto;
     display: flex;
@@ -47,12 +46,12 @@
 }
 
 .pageNumbersBanner button {
-    width: 10%;
+    width: 7%;
     background-color:transparent;
     font-size: 1.5rem;
     cursor: pointer;
     color: black;
-    margin: 0 0.1rem;
+    margin: 0 0.3rem;
     border-radius: 0.4rem;
     border: 1px solid rgb(189, 188, 188);;
     height: 0.4rem;
@@ -67,5 +66,20 @@
 .pageNumbersBanner button:focus {
     outline: none;
 } 
+
+@media screen and (max-width: 500px) {
+    .pageNumbersBanner button {
+        width: 15%;
+        background-color:transparent;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: black;
+        margin: 1rem 0.1rem 0rem;
+        border-radius: 0.4rem;
+        border: 1px solid rgb(189, 188, 188);;
+        height: 0.4rem;
+
+    } 
+}
 
 

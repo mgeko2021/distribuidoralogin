@@ -111,7 +111,7 @@ const NavigationBar = () => {
   return (
     <div className="NavigationBar row col-md-11 col-lg-10 col-xl-8 mx-auto p-0">
       <div className="Nav col-md-12  p-0">
-        <div className="LogoNav col-3">
+        <div className="LogoNav  col-7 col-sm-5 col-md-3">
           <img src="logo.png"></img>
         </div>
         <div className="NavLinks nav-links col-12 col-sm-12 col-md-7 p-0">

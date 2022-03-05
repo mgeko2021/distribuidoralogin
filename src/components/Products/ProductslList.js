@@ -127,6 +127,22 @@ function ProductslList({ infoBanner }) {
 
   }
 
+  
+  // useEffect(() => {
+  //   localStorage.setItem("listLaboratoryRender", JSON.stringify(listLaboratoryRender));
+  //   localStorage.setItem("offerProducts", JSON.stringify(offerProducts));
+  //   if (JSON.parse(localStorage.getItem("datos"))) {
+  //     let holi = JSON.parse(localStorage.getItem("datos"))
+  //     setRenderProducts(holi)
+  //   }  
+  //   if (JSON.parse(localStorage.getItem("offerProducts"))) {
+  //     let holi2 = JSON.parse(localStorage.getItem("offerProducts"))
+  //     setOfferProducts(holi2)
+  //   }  
+ 
+  // }, [])
+  
+
 
 
 
@@ -183,7 +199,8 @@ function ProductslList({ infoBanner }) {
     <LaboratoryRender key={index} laboratory={laboratory.CMCRICLA_DESCRIPCION} laboratoryValue={laboratory.ID_CRICLA1} />
   ));
 
-  laboratoriRef.current = listLaboratoryRender
+
+  
   const listCategoriesRender = categoriesRender.map((categoria, index) => (
     <CategoriesRender key={index} categoria={categoria} setRenderProducts={setRenderProducts} renderProducts={renderProducts}  />
   ));

@@ -13,10 +13,10 @@ const Footer = () => {
     <footer id="ContacId" className="Footer row col-12 p-0 m-0">
       <div className="FooterUp">
         <div className=" row col-11 col-lg-10 col-xl-8 mx-auto p-0">
-          <div className="FooterLogo col-12 col-lg-2 col-xl-3 p-0 d-flex justify-content-center ">
+          <div className="FooterLogo col-12 col-lg-3 col-xl-3 p-0 d-flex justify-content-center ">
             <img src="logo.png" alt="" />
           </div>
-          <div className="FooterIcons row col-12 col-lg-10 col-xl-9 p-0 d-flex justify-content-end">
+          <div className="FooterIcons row col-12 col-lg-9 col-xl-9 p-0 d-flex justify-content-end">
             <span className="PBX col-12 col-sm-4  d-flex justify-content-center p-0">
               <CallIcon style={{ color: "white", transform: "scaleX(-1)" }} />
               <p>PBX: 57 (2) 386 5770</p>

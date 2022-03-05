@@ -1,5 +1,5 @@
 .BannerInfo {
-    display: flex;
+    display: flex!important;
     width: 100%;
     padding-bottom: 0;
 
@@ -7,15 +7,24 @@
 
 .DescriptionBanner{
     padding: 5%;
+    display: flex;
+    flex-direction: column;
 }
 
-.DescriptionBanner h3{
-    font-size: 1.2rem;
+.DescriptionBanner h4{
+    text-align: left;
+    font-weight: 700;
+    color: rgb(54, 61, 77);
+    font-size: 1.8rem;
 }
 
 .DescriptionBanner p{
     font-size: 0.7rem;
     margin: 0.7rem auto;
+    text-align: left;
+    font-size: 1rem;
+    color: gray;
+    font-weight: 400;
 }
 
 .ImgBanner{
@@ -23,4 +32,30 @@
     align-items: center;
     justify-content: center;
     color: white;
+}
+
+@media screen and (max-width: 770px) {
+
+    .Nav {
+        display: flex;
+        align-items: center;
+    }
+    .BannerInfo {
+        display: flex!important;
+        flex-direction: column-reverse;
+    }
+    .DescriptionBanner{
+        padding: 5%;
+        display: flex;
+        align-items: center;
+    }
+    .DescriptionBanner h4{
+        text-align: center;
+        font-size: 1.5rem;
+    }
+    
+    .DescriptionBanner p{
+        text-align: center;
+        font-size: 0.8rem;
+    }
 }

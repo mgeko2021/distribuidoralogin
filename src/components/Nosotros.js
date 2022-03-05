@@ -1,7 +1,7 @@
 import React from "react";
 import Information from "./HomePage/Information";
 import NavigationBar from "./HomePage/NavigationBar";
-import img from "./bg-main.jpg";
+import img from "./img2.jpg";
 import "../Styles/Nosotros.css";
 import Footer from "./Footer";
 
@@ -13,8 +13,8 @@ const Nosotros = () => {
     <div className="Nosotros">
       <Information />
       <div
-        className="BannerImg pt-3 pb-3"
-        style={{ backgroundImage: `url(${img})` }}
+        className="BannerImg2 "
+        style={{ backgroundImage: `url(${img})`, backgroundSize:"cover", backgroundPosition:"center", padding:"0.4rem 0 5rem"}}
       >
         <NavigationBar />
         <div className="NosotrosRoute row col-md-11 col-lg-10 col-xl-8 mx-auto p-0">
@@ -60,17 +60,7 @@ const Nosotros = () => {
         <div className="row col-md-11 col-lg-10 col-xl-8 mx-auto p-0">
           <h3>Historia</h3>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore
-            repellendus quae ipsa a illo! Doloremque, id commodi. Ullam
-            voluptatem adipisci neque, et nihil, eligendi amet minima
-            accusantium atque autem odio. Cupiditate unde, rerum provident omnis
-            explicabo animi illo dignissimos aliquam sunt necessitatibus
-            adipisci et aspernatur facere ipsum corrupti quis odio delectus eius
-            explicabo animi illo dignissimos aliquam sunt necessitatibus
-            adipisci et aspernatur facere ipsum corrupti quis odio delectus eius
-            explicabo animi illo dignissimos aliquam sunt necessitatibus
-            adipisci et aspernatur facere ipsum corrupti quis odio delectus eius
-   
+          El 17 de noviembre de 1999 se fundo la compañía Distribuidora Negociemos, comercializadora de insumos farmacéuticos para la ciudad de Cali, con el apoyo de droguerías las cuales nos dieron su apoyo en nuestros inicios sin las cuales no abría sido posible nuestro propósito como empresa, y siempre con el apoyo de nuestra fe, una fe en DIOS, que nos a abierto las puertas y ha permitido que todo sea posible.   
           </p>
         </div>
       </div>

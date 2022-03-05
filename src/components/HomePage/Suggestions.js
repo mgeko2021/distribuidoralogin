@@ -19,7 +19,7 @@ const Suggestions = () => {
 
     let productSugesstions = useSelector((store) => store.dataProducts.array)
     
-    const currentSugesstions = productSugesstions.slice(0, 7);
+    const currentSugesstions = productSugesstions.slice(0, 8);
 
     const suegestionsDesktopRender = currentSugesstions.map((productSugesstions, index) => (
         <SueggestionRenderDesktop key={index} productSugesstions={productSugesstions} />

@@ -6,7 +6,7 @@ import "../Styles/Laboratorie.css"
 import { useEffect, useState } from "react";
 import Autocomplete from "./Laboratorie/AutoComplete";
 // import Autocomplete from "./Laboratorie/AutoComplete";
-import img from "./bg-main.jpg"
+import img from "./img2.jpg";
 import Footer from "./Footer";
 
 const Laboratorie = () => {
@@ -91,10 +91,13 @@ const Laboratorie = () => {
 
     return (
         <div className="Laboratorie">
-          <div className="BannerImg  pb-4" style={{backgroundImage:`url(${img})`}}>
             <Information/>
-            <NavigationBar/>
-          </div>  
+            <div
+            className="BannerImg2 "
+            style={{ backgroundImage: `url(${img})`, backgroundSize:"cover", backgroundPosition:"center", padding:"0.4rem 0 5rem"}}
+          >
+                <NavigationBar/>
+            </div>
           <div className="DisLaboratorie row col-11  col-xl-8 mx-auto p-0 mt-4">
             <Autocomplete laboratorie={laboratorie}/>
             <div className="RenderList col-11 col-sm-12  col-md-8 col-lg-9">

@@ -16,12 +16,12 @@ const BannerInfo = ({item}) => {
             <div className="DescriptionBanner col-sm-12 col-md-6 mx-auto">
                 <h4>{item.DESCRIPCION}</h4>
                 <p>
-                    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,sino que tambien ingresó como texto de relleno en documentos electrónicos
+                    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
                 </p>
                 {auth.tokenAuth ?
                 <Link to={`/compraproducto/${item.ID_ITEM}`} style={{textDecoration:"none"}}>
-                <Button variant="contained"  color="secondary" disableElevation  onClick={()=>{dispatch(getProductBuyAction(item))}}>
-                comprar producto
+                <Button  variant="contained"  style={{ backgroundColor:"rgb(0, 65, 176)", color:"white", fontWeight:"700", padding:"0.8rem 1rem" }}   onClick={()=>{dispatch(getProductBuyAction(item))}}>
+                comprar ahora
                 </Button>
                 </Link>: null}
             </div>

@@ -45,3 +45,19 @@
     color: rgb(218, 27, 27)!important;
     font-weight: 700;
 }
+
+.SuggestionsImg1 h5{
+    margin-top: 0.5rem;
+    color: black;
+    font-size: 0.8rem;
+    text-align: left;
+}
+
+@media screen and (max-width: 770px) {
+    .SuggestionsImg1 h5{
+        text-align: center;
+        width: 50%;
+        margin: auto;
+        margin-top: 0.5rem !important;
+    }
+}
